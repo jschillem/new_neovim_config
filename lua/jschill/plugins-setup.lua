@@ -96,9 +96,6 @@ return packer.startup(function(use)
 	-- git signs plugin
 	use("lewis6991/gitsigns.nvim")
 
-	-- code minimap
-	use("wfxr/minimap.vim")
-
 	if packer_bootstrap then
 		require("packer").sync()
 	end
