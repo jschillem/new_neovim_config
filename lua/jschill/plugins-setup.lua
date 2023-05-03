@@ -101,6 +101,8 @@ return packer.startup(function(use)
 		event = "VimEnter",
 	})
 
+	use("lukas-reineke/indent-blankline.nvim")
+
 	if packer_bootstrap then
 		require("packer").sync()
 	end
