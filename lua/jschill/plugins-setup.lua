@@ -96,6 +96,11 @@ return packer.startup(function(use)
 	-- git signs plugin
 	use("lewis6991/gitsigns.nvim")
 
+	use({
+		"glepnir/dashboard-nvim",
+		event = "VimEnter",
+	})
+
 	if packer_bootstrap then
 		require("packer").sync()
 	end
