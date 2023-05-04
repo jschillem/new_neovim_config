@@ -1,3 +1,5 @@
+-- Includes all lua files
+
 require("jschill.plugins-setup")
 require("jschill.core.options")
 require("jschill.core.keymaps")
