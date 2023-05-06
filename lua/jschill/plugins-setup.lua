@@ -103,6 +103,8 @@ return packer.startup(function(use)
 
 	use("lukas-reineke/indent-blankline.nvim")
 
+	use({ "phaazon/hop.nvim", branch = "v2" })
+
 	if packer_bootstrap then
 		require("packer").sync()
 	end

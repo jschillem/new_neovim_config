@@ -17,6 +17,7 @@ mason.setup()
 
 mason_lspconfig.setup({
 	ensure_installed = {
+		"svelte",
 		"clangd",
 		"html",
 		"cssls",
