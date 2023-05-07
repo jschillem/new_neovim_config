@@ -109,6 +109,15 @@ return packer.startup(function(use)
 	-- Hop for easier navigation
 	use({ "phaazon/hop.nvim", branch = "v2" })
 
+	use({
+		"saecki/crates.nvim",
+		event = { "BufRead Cargo.toml" },
+		requires = { { "nvim-lua/plenary.nvim" } },
+		config = function()
+			require("crates").setup()
+		end,
+	})
+
 	if packer_bootstrap then
 		require("packer").sync()
 	end
