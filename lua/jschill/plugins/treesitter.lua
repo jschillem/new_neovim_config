@@ -11,6 +11,8 @@ treesitter.setup({
 	autotag = { enable = true },
 	ensure_installed = {
 		"json",
+		"markdown",
+		"markdown_inline",
 		"c",
 		"cpp",
 		"rust",

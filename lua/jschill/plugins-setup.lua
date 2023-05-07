@@ -75,6 +75,7 @@ return packer.startup(function(use)
 	use("hrsh7th/cmp-nvim-lsp")
 	use({ "glepnir/lspsaga.nvim", branch = "main" })
 	use("onsails/lspkind.nvim")
+	use("lvimuser/lsp-inlayhints.nvim") -- inlay hints
 
 	-- formatting & linting
 	use("jose-elias-alvarez/null-ls.nvim")
@@ -96,13 +97,16 @@ return packer.startup(function(use)
 	-- git signs plugin
 	use("lewis6991/gitsigns.nvim")
 
+	-- dashboard
 	use({
 		"glepnir/dashboard-nvim",
 		event = "VimEnter",
 	})
 
+	-- indent lines
 	use("lukas-reineke/indent-blankline.nvim")
 
+	-- Hop for easier navigation
 	use({ "phaazon/hop.nvim", branch = "v2" })
 
 	if packer_bootstrap then
