@@ -26,6 +26,9 @@ keymap.set("n", "<leader>tx", ":tabclose<CR>")
 keymap.set("n", "<leader>tn", ":tabn<CR>")
 keymap.set("n", "<leader>tp", ":tabp<CR>")
 
+-- Add 'zz' to <C-d> & <C-u>
+keymap.set("n", "<C-u>", "<C-u>zz")
+
 -- plugin keymaps
 
 -- vim-maximizer
