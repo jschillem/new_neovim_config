@@ -10,6 +10,9 @@ opt.shiftwidth = 3
 opt.expandtab = true
 opt.autoindent = true
 
+-- scroll off
+opt.scrolloff = 8
+
 -- cursor line
 opt.cursorline = true
 
