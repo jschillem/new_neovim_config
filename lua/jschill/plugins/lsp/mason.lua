@@ -17,16 +17,17 @@ mason.setup()
 
 mason_lspconfig.setup({
 	ensure_installed = {
+		"tsserver",
 		"svelte",
 		"clangd",
 		"html",
 		"cssls",
+		"tailwindcss",
 		"rust_analyzer",
 		"pyright",
 		"lua_ls",
 		"sqlls",
 		"taplo",
-		"yamlls",
 	},
 	automatic_installation = true,
 })
@@ -35,6 +36,5 @@ mason_null_ls.setup({
 	ensure_installed = {
 		"stylua",
 		"rustfmt",
-		"sql-fmt",
 	},
 })

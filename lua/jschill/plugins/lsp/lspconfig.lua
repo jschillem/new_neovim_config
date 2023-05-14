@@ -8,6 +8,11 @@ if not cmp_nvim_lsp_status then
 	return
 end
 
+local typescript_status, typescript = pcall(require, "typescript")
+if not typescript_status then
+	return
+end
+
 local keymap = vim.keymap
 
 -- enable keybinds only for when lsp server available
@@ -29,9 +34,13 @@ local on_attach = function(client, bufnr)
 	keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts) -- jump to next diagnostic in buffer
 	keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts) -- show documentation for what is under cursor
 	keymap.set("n", "<leader>o", "<cmd>LSoutlineToggle<CR>", opts) -- see outline on right hand side
+
+	if client.name == "tsserver" then
+		keymap.set("n", "<leader>rf", ":TypescriptRenameFile<CR>")
+	end
 end
 
-local Capabilities = require("cmp_nvim_lsp").default_capabilities()
+local Capabilities = cmp_nvim_lsp.default_capabilities()
 
 lspconfig["html"].setup({
 	capabilities = Capabilities,
@@ -49,6 +58,16 @@ lspconfig["clangd"].setup({
 })
 
 lspconfig["rust_analyzer"].setup({
+	capabilities = Capabilities,
+	on_attach = on_attach,
+})
+
+lspconfig["tailwindcss"].setup({
+	capabilities = Capabilities,
+	on_attach = on_attach,
+})
+
+lspconfig["svelte"].setup({
 	capabilities = Capabilities,
 	on_attach = on_attach,
 })
@@ -86,7 +105,9 @@ lspconfig["sqlls"].setup({
 	on_attach = on_attach,
 })
 
-lspconfig["yamlls"].setup({
-	capabilities = Capabilities,
-	on_attach = on_attach,
+typescript.setup({
+	server = {
+		capabilities = Capabilities,
+		on_attach = on_attach,
+	},
 })
