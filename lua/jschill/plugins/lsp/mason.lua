@@ -36,5 +36,6 @@ mason_null_ls.setup({
 	ensure_installed = {
 		"stylua",
 		"rustfmt",
+		"eslint_d",
 	},
 })
