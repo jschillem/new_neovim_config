@@ -14,8 +14,8 @@ local packer_bootstrap = ensure_packer() -- true if packer was just installed
 -- Autocommand that reloads neovim whenever you save this file
 vim.cmd([[
   augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins-setup.lua source <afile> | PackerSync
+  autocmd!
+  autocmd BufWritePost plugins-setup.lua source <afile> | PackerSync
   augroup end
 ]])
 
