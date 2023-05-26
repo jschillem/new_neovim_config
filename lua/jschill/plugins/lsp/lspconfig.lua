@@ -105,6 +105,11 @@ lspconfig["sqlls"].setup({
 	on_attach = on_attach,
 })
 
+lspconfig["emmet_ls"].setup({
+	capabilities = Capabilities,
+	on_attach = on_attach,
+})
+
 typescript.setup({
 	server = {
 		capabilities = Capabilities,

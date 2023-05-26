@@ -119,6 +119,8 @@ return packer.startup(function(use)
 		end,
 	})
 
+	use("fladson/vim-kitty")
+
 	if packer_bootstrap then
 		require("packer").sync()
 	end
