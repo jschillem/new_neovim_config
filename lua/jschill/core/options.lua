@@ -31,4 +31,8 @@ opt.clipboard:append("unnamedplus")
 opt.splitright = true
 opt.splitbelow = true
 
+-- remove line wrapping / auto newline'
+opt.textwidth = 130
+opt.formatoptions = opt.formatoptions + "t" + "c"
+
 opt.iskeyword:append("-")
