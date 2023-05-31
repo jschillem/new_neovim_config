@@ -31,5 +31,14 @@ treesitter.setup({
 		"glsl",
 		"toml",
 	},
+
 	auto_install = true,
+	rainbow = {
+		enable = true,
+		query = {
+			"rainbow-parens",
+			html = "rainbow-tags",
+			latex = "rainbow-blocks",
+		},
+	},
 })

@@ -11,11 +11,13 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 null_ls.setup({
 	sources = {
+		formatting.prettier,
 		formatting.stylua,
 		formatting.rustfmt,
 		formatting.sqlfmt,
-		-- diagnostics.eslint_d,
+		diagnostics.eslint_d,
 	},
+
 	-- configure format on save
 	on_attach = function(current_client, bufnr)
 		if current_client.supports_method("textDocument/formatting") then
@@ -25,11 +27,7 @@ null_ls.setup({
 				buffer = bufnr,
 				callback = function()
 					vim.lsp.buf.format({
-						filter = function(client)
-							--  only use null-ls for formatting instead of lsp server
-							return client.name == "null-ls"
-						end,
-						bufnr = bufnr,
+						async = false,
 					})
 				end,
 			})

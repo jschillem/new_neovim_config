@@ -52,6 +52,11 @@ lspconfig["cssls"].setup({
 	on_attach = on_attach,
 })
 
+lspconfig["prismals"].setup({
+	capabilities = Capabilities,
+	on_attach = on_attach,
+})
+
 lspconfig["clangd"].setup({
 	capabilities = Capabilities,
 	on_attach = on_attach,

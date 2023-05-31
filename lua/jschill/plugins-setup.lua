@@ -121,6 +121,10 @@ return packer.startup(function(use)
 
 	use("fladson/vim-kitty")
 
+	use({
+		"HiPhish/nvim-ts-rainbow2",
+		requires = { { "nvim-treesitter/nvim-treesitter" } },
+	})
 	if packer_bootstrap then
 		require("packer").sync()
 	end
