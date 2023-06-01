@@ -41,4 +41,8 @@ treesitter.setup({
 			latex = "rainbow-blocks",
 		},
 	},
+	context_commentstring = {
+		enable = true,
+		enable_autocmd = false,
+	},
 })
