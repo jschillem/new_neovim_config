@@ -13,6 +13,13 @@ if not lspkind_status then
 	return
 end
 
+-- luaSnip keybinds/setup
+vim.keymap.set({ "i", "s" }, "<C-k>", function()
+	if luasnip.expand_or_jumpable() then
+		luasnip.expand_or_jump()
+	end
+end, { silent = true })
+
 -- load friendly-snippets
 require("luasnip/loaders/from_vscode").lazy_load()
 
@@ -31,14 +38,17 @@ cmp.setup({
 		["<C-f>"] = cmp.mapping.scroll_docs(4),
 		["<C-a>"] = cmp.mapping.complete(),
 		["<C-e>"] = cmp.mapping.abort(),
-		["<CR>"] = cmp.mapping.confirm({ select = true }),
+		["<CR>"] = cmp.mapping.confirm({ select = false }),
 	}),
-	sources = cmp.config.sources({
-		{ name = "nvim_lsp" }, -- lsp
-		{ name = "luasnip" }, -- snippets
-		{ name = "buffer" }, -- text within current buffer
-		{ name = "path" }, -- file system paths
-	}),
+	sources = cmp.config.sources(
+		{ { name = "nvim_lsp_signature_help" } },
+		{ { name = "nvim_lsp" } }, -- lsp
+		{ { name = "luasnip" } }, -- snippets
+		{ { name = "buffer" } }, -- text within current buffer
+		{ { name = "path" } }, -- file system paths
+		{ { name = "nvim_lua" } },
+		{ { name = "emoji" } }
+	),
 	formatting = {
 		format = lspkind.cmp_format({
 			maxwidth = 50,

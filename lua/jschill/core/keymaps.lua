@@ -28,6 +28,7 @@ keymap.set("n", "<leader>tp", ":tabp<CR>")
 
 -- Add 'zz' to <C-d> & <C-u>
 keymap.set("n", "<C-u>", "<C-u>zz")
+keymap.set("n", "<C-d>", "<C-d>zz")
 
 -- plugin keymaps
 

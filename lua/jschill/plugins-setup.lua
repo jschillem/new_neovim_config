@@ -60,10 +60,18 @@ return packer.startup(function(use)
 	-- autocompletion
 	use("hrsh7th/nvim-cmp")
 	use("hrsh7th/cmp-buffer")
+	use("hrsh7th/cmp-nvim-lua")
+	use("hrsh7th/cmp-emoji")
+	use("hrsh7th/cmp-nvim-lsp-signature-help")
+
 	use("hrsh7th/cmp-path")
 
 	-- snippets
-	use("L3MON4D3/LuaSnip")
+	use({
+		"L3MON4D3/LuaSnip",
+		-- install jsregexp (optional!:).
+		run = "make install_jsregexp",
+	})
 	use("saadparwaiz1/cmp_luasnip")
 	use("rafamadriz/friendly-snippets")
 
@@ -98,7 +106,6 @@ return packer.startup(function(use)
 
 	-- git signs plugin
 	use("lewis6991/gitsigns.nvim")
-
 	-- dashboard
 	use({
 		"glepnir/dashboard-nvim",
