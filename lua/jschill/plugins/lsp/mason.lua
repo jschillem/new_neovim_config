@@ -20,6 +20,7 @@ mason_lspconfig.setup({
 		"tsserver",
 		"svelte",
 		"emmet_ls",
+		"gopls",
 		"prismals",
 		"clangd",
 		"html",
@@ -38,6 +39,7 @@ mason_null_ls.setup({
 	ensure_installed = {
 		"prettier",
 		"stylua",
+		"gofmt",
 		"rustfmt",
 		"eslint_d",
 	},

@@ -133,6 +133,7 @@ return packer.startup(function(use)
 		"HiPhish/nvim-ts-rainbow2",
 		requires = { { "nvim-treesitter/nvim-treesitter" } },
 	})
+
 	if packer_bootstrap then
 		require("packer").sync()
 	end

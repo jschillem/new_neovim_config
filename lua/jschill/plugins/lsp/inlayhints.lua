@@ -6,7 +6,7 @@ end
 inlayhints.setup({
 	inlay_hints = {
 		parameter_hints = {
-			show = false,
+			show = true,
 		},
 	},
 })
