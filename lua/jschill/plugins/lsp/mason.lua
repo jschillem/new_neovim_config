@@ -40,7 +40,6 @@ mason_null_ls.setup({
 		"prettier",
 		"stylua",
 		"gofmt",
-		"rustfmt",
 		"eslint_d",
 	},
 })

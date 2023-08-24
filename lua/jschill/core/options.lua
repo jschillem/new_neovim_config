@@ -10,6 +10,10 @@ opt.shiftwidth = 2
 opt.expandtab = true
 opt.autoindent = true
 
+-- rust settings
+vim.g.rust_recommended_style = 0
+vim.g.rustfmt_autosave = 1
+
 -- scroll off
 opt.scrolloff = 8
 
