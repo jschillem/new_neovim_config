@@ -27,6 +27,7 @@ end
 return packer.startup(function(use)
 	use("wbthomason/packer.nvim")
 	use("folke/tokyonight.nvim")
+	use("olimorris/onedarkpro.nvim")
 
 	-- lua functions that many plugins use
 	use("nvim-lua/plenary.nvim")
