@@ -12,9 +12,14 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
-	"folke/tokyonight.nvim",
+	-- "folke/tokyonight.nvim",
 	{
 		"olimorris/onedarkpro.nvim",
+		lazy = true,
+		priority = 900,
+	},
+	{
+		"rebelot/kanagawa.nvim",
 		lazy = false,
 		priority = 1000,
 	},
@@ -108,6 +113,8 @@ local plugins = {
 		"HiPhish/nvim-ts-rainbow2",
 		dependencies = { { "nvim-treesitter/nvim-treesitter" } },
 	},
+	"nvimdev/guard.nvim",
+	"mfussenegger/nvim-lint",
 }
 
 local opts = {}
