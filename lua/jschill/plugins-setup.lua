@@ -115,6 +115,7 @@ local plugins = {
 	},
 	"nvimdev/guard.nvim",
 	"mfussenegger/nvim-lint",
+	"rcarriga/nvim-notify",
 }
 
 local opts = {}
