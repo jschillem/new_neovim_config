@@ -24,7 +24,7 @@ local plugins = {
 		priority = 1000,
 	},
 	-- lua functions that many plugins use
-	"nvim-lua/plenary.nvim",
+	{ "nvim-lua/plenary.nvim", lazy = false },
 	-- tmux & split window navigation
 	"christoomey/vim-tmux-navigator",
 	"szw/vim-maximizer", -- maximizes and restores current window
@@ -35,7 +35,7 @@ local plugins = {
 	"numToStr/Comment.nvim",
 	"JoosepAlviste/nvim-ts-context-commentstring",
 	-- file explorer
-	"nvim-tree/nvim-tree.lua",
+	{ "nvim-tree/nvim-tree.lua", lazy = false },
 	-- vs-code icons
 	"kyazdani42/nvim-web-devicons",
 	-- statusline
@@ -44,6 +44,7 @@ local plugins = {
 	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 	{
 		"nvim-telescope/telescope.nvim",
+		lazy = false,
 		tag = "0.1.2",
 		branch = "0.1.x",
 		dependencies = { "nvim-lua/plenary.nvim" },
@@ -91,6 +92,8 @@ local plugins = {
 	-- dashboard
 	{
 		"glepnir/dashboard-nvim",
+		lazy = false,
+		priority = 950,
 		event = "VimEnter",
 	},
 	-- indent lines
@@ -113,9 +116,23 @@ local plugins = {
 		"HiPhish/nvim-ts-rainbow2",
 		dependencies = { { "nvim-treesitter/nvim-treesitter" } },
 	},
-	"nvimdev/guard.nvim",
-	"mfussenegger/nvim-lint",
-	"rcarriga/nvim-notify",
+	{ "rcarriga/nvim-notify", lazy = false },
+	{ "folke/neodev.nvim", opts = {} },
+	{
+		"folke/noice.nvim",
+		event = "VeryLazy",
+		opts = {
+			-- add any options here
+		},
+		dependencies = {
+			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+			"MunifTanjim/nui.nvim",
+			-- OPTIONAL:
+			--   `nvim-notify` is only needed, if you want to use the notification view.
+			--   If not available, we use `mini` as the fallback
+			"rcarriga/nvim-notify",
+		},
+	},
 }
 
 local opts = {}

@@ -13,6 +13,11 @@ if not typescript_status then
 	return
 end
 
+local neodev_status, neodev = pcall(require, "neodev")
+if not neodev_status then
+	return
+end
+
 local keymap = vim.keymap
 
 -- enable keybinds only for when lsp server available
@@ -88,20 +93,32 @@ lspconfig["lua_ls"].setup({
 	on_attach = on_attach,
 	settings = {
 		Lua = {
-			diagnostics = {
-				globals = { "vim" },
-			},
-			workspace = {
-				library = {
-					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-					[vim.fn.stdpath("config") .. "/lua"] = true,
-				},
+			completion = {
+				callSnippet = "Replace",
 			},
 		},
 	},
 })
 
-lspconfig["pyright"].setup({
+lspconfig["eslint"].setup({
+	capabilities = Capabilities,
+	on_attach = function(client, bufnr)
+		vim.api.nvim_create_autocmd("BufWrite", {
+			buffer = bufnr,
+			command = "EslintFixAll",
+		})
+	end,
+	settings = {
+		packageMananger = "pnpm",
+	},
+})
+
+lspconfig["pylsp"].setup({
+	capabilities = Capabilities,
+	on_attach = on_attach,
+})
+
+lspconfig["ruff_lsp"].setup({
 	capabilities = Capabilities,
 	on_attach = on_attach,
 })
