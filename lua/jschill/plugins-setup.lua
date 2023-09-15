@@ -41,7 +41,11 @@ local plugins = {
 	-- statusline
 	"nvim-lualine/lualine.nvim",
 	-- fuzzy finding
-	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+	{
+		"nvim-telescope/telescope-fzf-native.nvim",
+		build = "make",
+		dependencies = { "nvim-telescope/telescope.nvim" },
+	},
 	{
 		"nvim-telescope/telescope.nvim",
 		lazy = false,
