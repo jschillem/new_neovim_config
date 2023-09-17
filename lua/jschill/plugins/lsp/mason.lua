@@ -43,5 +43,6 @@ mason_null_ls.setup({
 		"stylua",
 		"gofmt",
 		"ruff",
+		"gdtoolkit",
 	},
 })

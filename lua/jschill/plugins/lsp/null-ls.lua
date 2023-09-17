@@ -18,7 +18,9 @@ null_ls.setup({
 		formatting.rustfmt,
 		formatting.sqlfmt,
 		formatting.gofmt,
+		formatting.gdformat,
 		diagnostics.ruff,
+		diagnostics.gdlint,
 	},
 
 	-- configure format on save
