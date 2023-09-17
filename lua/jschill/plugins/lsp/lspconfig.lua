@@ -73,6 +73,11 @@ lspconfig["jdtls"].setup({
 	on_attach = on_attach,
 })
 
+lspconfig["gdscript"].setup({
+	capabilities = Capabilities,
+	on_attach = on_attach,
+})
+
 lspconfig["rust_analyzer"].setup({
 	capabilities = Capabilities,
 	on_attach = on_attach,

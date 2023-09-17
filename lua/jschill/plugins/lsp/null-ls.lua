@@ -20,7 +20,6 @@ null_ls.setup({
 		formatting.gofmt,
 		formatting.gdformat,
 		diagnostics.ruff,
-		diagnostics.gdlint,
 	},
 
 	-- configure format on save
