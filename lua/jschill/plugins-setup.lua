@@ -122,6 +122,11 @@ local plugins = {
 	},
 	{ "rcarriga/nvim-notify", lazy = false },
 	{ "folke/neodev.nvim", opts = {} },
+	{
+		"chipsenkbeil/distant.nvim",
+		branch = "v0.3",
+	},
+	{ "tpope/vim-fugitive" },
 }
 
 local opts = {}
