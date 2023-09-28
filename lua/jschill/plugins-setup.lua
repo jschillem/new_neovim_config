@@ -101,7 +101,7 @@ local plugins = {
 		event = "VimEnter",
 	},
 	-- indent lines
-	"lukas-reineke/indent-blankline.nvim",
+	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 	-- Hop for easier navigation
 	{
 		"phaazon/hop.nvim",
