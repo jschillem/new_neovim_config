@@ -24,6 +24,7 @@ mason_lspconfig.setup({
 		"gopls",
 		"prismals",
 		"clangd",
+		"astro",
 		"html",
 		"cssls",
 		"tailwindcss",

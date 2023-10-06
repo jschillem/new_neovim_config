@@ -138,6 +138,11 @@ lspconfig["taplo"].setup({
 	on_attach = on_attach,
 })
 
+lspconfig["astro"].setup({
+	capabilities = Capabilities,
+	on_attach = on_attach,
+})
+
 lspconfig["sqlls"].setup({
 	capabilities = Capabilities,
 	on_attach = on_attach,
