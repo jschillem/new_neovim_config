@@ -14,11 +14,6 @@ vim.opt.rtp:prepend(lazypath)
 local plugins = {
 	-- "folke/tokyonight.nvim",
 	{
-		"olimorris/onedarkpro.nvim",
-		lazy = true,
-		priority = 900,
-	},
-	{
 		"rebelot/kanagawa.nvim",
 		lazy = false,
 		priority = 1000,
@@ -57,8 +52,6 @@ local plugins = {
 	"hrsh7th/nvim-cmp",
 	"hrsh7th/cmp-buffer",
 	"hrsh7th/cmp-nvim-lua",
-	"hrsh7th/cmp-emoji",
-	"hrsh7th/cmp-nvim-lsp-signature-help",
 	"hrsh7th/cmp-path",
 	-- snippets
 	{
