@@ -25,10 +25,8 @@ local plugins = {
 	"szw/vim-maximizer", -- maximizes and restores current window
 	-- essential plugins
 	"tpope/vim-surround",
-	"vim-scripts/ReplaceWithRegister",
 	-- commenting with gc
 	"numToStr/Comment.nvim",
-	"JoosepAlviste/nvim-ts-context-commentstring",
 	-- file explorer
 	{ "nvim-tree/nvim-tree.lua", lazy = false },
 	-- vs-code icons
