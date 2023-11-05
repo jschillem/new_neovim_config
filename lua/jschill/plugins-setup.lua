@@ -108,7 +108,7 @@ local plugins = {
 	},
 	"fladson/vim-kitty",
 	{
-		"HiPhish/nvim-ts-rainbow2",
+		"HiPhish/rainbow-delimiters.nvim",
 		dependencies = { { "nvim-treesitter/nvim-treesitter" } },
 	},
 	{ "rcarriga/nvim-notify", lazy = false },
