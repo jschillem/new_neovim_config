@@ -133,6 +133,11 @@ lspconfig["gopls"].setup({
 	on_attach = on_attach,
 })
 
+lspconfig["ocamllsp"].setup({
+	capabilities = Capabilities,
+	on_attach = on_attach,
+})
+
 lspconfig["taplo"].setup({
 	capabilities = Capabilities,
 	on_attach = on_attach,
