@@ -70,7 +70,7 @@ local plugins = {
 	"jose-elias-alvarez/typescript.nvim",
 	"onsails/lspkind.nvim",
 	-- formatting & lintingsetp
-	"jose-elias-alvarez/null-ls.nvim",
+	"nvimtools/none-ls.nvim",
 	"jayp0521/mason-null-ls.nvim",
 	-- treesitter for better syntax highlighting
 	{
