@@ -123,11 +123,6 @@ lspconfig["pylsp"].setup({
 	on_attach = on_attach,
 })
 
-lspconfig["ruff_lsp"].setup({
-	capabilities = Capabilities,
-	on_attach = on_attach,
-})
-
 lspconfig["gopls"].setup({
 	capabilities = Capabilities,
 	on_attach = on_attach,

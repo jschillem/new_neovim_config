@@ -18,6 +18,7 @@ null_ls.setup({
 		formatting.rustfmt,
 		formatting.sqlfmt,
 		formatting.gofmt,
+		formatting.ruff,
 		formatting.ocamlformat,
 		formatting.gdformat,
 		diagnostics.ruff,
