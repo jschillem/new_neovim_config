@@ -26,7 +26,7 @@ local plugins = {
 	-- essential plugins
 	"tpope/vim-surround",
 	-- commenting with gc
-	"numToStr/Comment.nvim",
+	{ "numToStr/Comment.nvim", lazy = false },
 	-- file explorer
 	{ "nvim-tree/nvim-tree.lua", lazy = false },
 	-- vs-code icons
@@ -42,7 +42,6 @@ local plugins = {
 	{
 		"nvim-telescope/telescope.nvim",
 		lazy = false,
-		tag = "0.1.2",
 		branch = "0.1.x",
 		dependencies = { "nvim-lua/plenary.nvim" },
 	},
@@ -62,7 +61,7 @@ local plugins = {
 	"saadparwaiz1/cmp_luasnip",
 	"rafamadriz/friendly-snippets",
 	-- managing and installing lsp servers
-	"williamboman/mason.nvim",
+	{ "williamboman/mason.nvim", lazy = false },
 	"williamboman/mason-lspconfig.nvim",
 	-- configuring lsp servers
 	"neovim/nvim-lspconfig",
@@ -80,7 +79,7 @@ local plugins = {
 		build = ":TSUpdate",
 	},
 	-- auto closing
-	"windwp/nvim-autopairs",
+	{ "windwp/nvim-autopairs", event = "InsertEnter" },
 	"windwp/nvim-ts-autotag",
 	-- git signs plugin
 	"lewis6991/gitsigns.nvim",
@@ -95,8 +94,7 @@ local plugins = {
 	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 	-- Hop for easier navigation
 	{
-		"phaazon/hop.nvim",
-		branch = "v2",
+		"smoka7/hop.nvim",
 	},
 	{
 		"saecki/crates.nvim",
@@ -118,6 +116,14 @@ local plugins = {
 		branch = "v0.3",
 	},
 	{ "tpope/vim-fugitive" },
+	{
+		"zeioth/garbage-day.nvim",
+		event = "BufEnter",
+		opts = {
+			-- your options here
+			stop_invisible = true,
+		},
+	},
 }
 
 local opts = {}
