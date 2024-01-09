@@ -13,6 +13,11 @@ if not mason_lspconfig_status then
 	return
 end
 
+local mason_dap_status, mason_dap = pcall(require, "mason-nvim-dap")
+if not mason_dap_status then
+	return
+end
+
 mason.setup()
 
 mason_lspconfig.setup({
@@ -47,3 +52,5 @@ mason_null_ls.setup({
 		"gdtoolkit",
 	},
 })
+
+mason_dap.setup()
