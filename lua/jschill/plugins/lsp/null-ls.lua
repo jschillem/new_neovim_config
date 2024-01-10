@@ -13,7 +13,9 @@ null_ls.setup({
 	sources = {
 		formatting.prettier.with({
 			extra_filetypes = { "svelte" },
+			disabled_filetypes = { "htmldjango" },
 		}),
+		formatting.djlint,
 		formatting.stylua,
 		formatting.rustfmt,
 		formatting.sqlfmt,
@@ -21,6 +23,7 @@ null_ls.setup({
 		formatting.ruff,
 		formatting.ocamlformat,
 		formatting.gdformat,
+		formatting.csharpier,
 		diagnostics.ruff,
 	},
 

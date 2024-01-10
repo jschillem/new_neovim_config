@@ -10,6 +10,14 @@ opt.shiftwidth = 2
 opt.expandtab = true
 opt.autoindent = true
 
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "cs",
+	callback = function()
+		opt.tabstop = 4
+		opt.shiftwidth = 4
+	end,
+})
+
 -- rust settings
 vim.g.rust_recommended_style = 0
 vim.g.rustfmt_autosave = 1

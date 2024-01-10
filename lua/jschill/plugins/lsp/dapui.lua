@@ -7,6 +7,22 @@ end
 
 dap_ui.setup()
 
+dap.adapters.coreclr = {
+	type = "executable",
+	command = vim.fn.exepath("netcoredbg"),
+	args = { "--interpreter=vscode" },
+}
+
+dap.configurations.cs = {
+	{
+		type = "coreclr",
+		name = "NetCoreDbg: Launch",
+		request = "launch",
+		cwd = "${fileDirname}",
+		program = get_dll,
+	},
+}
+
 dap.listeners.before.attach.dapui_config = function()
 	dap_ui.open()
 end
