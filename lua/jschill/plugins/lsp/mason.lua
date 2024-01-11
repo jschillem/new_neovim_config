@@ -24,6 +24,7 @@ mason_lspconfig.setup({
 	ensure_installed = {
 		"tsserver",
 		"svelte",
+		"htmx",
 		"emmet_ls",
 		"jdtls",
 		"gopls",
