@@ -22,6 +22,7 @@ null_ls.setup({
 		formatting.gofmt,
 		formatting.ruff,
 		formatting.ocamlformat,
+		formatting.clang_format,
 		formatting.gdformat,
 		formatting.csharpier,
 		diagnostics.ruff,
