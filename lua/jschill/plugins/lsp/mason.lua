@@ -25,6 +25,7 @@ mason_lspconfig.setup({
 		"tsserver",
 		"svelte",
 		"emmet_ls",
+		"htmx_lsp",
 		"jdtls",
 		"gopls",
 		"prismals",

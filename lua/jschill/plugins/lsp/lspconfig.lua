@@ -127,6 +127,11 @@ lspconfig["pylsp"].setup({
 	on_attach = on_attach,
 })
 
+lspconfig["htmx_lsp"].setup({
+	capabilities = Capabilities,
+	on_attach = on_attach,
+})
+
 lspconfig["omnisharp"].setup({
 	capabilities = Capabilities,
 	on_attach = on_attach,
