@@ -127,7 +127,7 @@ lspconfig["pylsp"].setup({
 	on_attach = on_attach,
 })
 
-lspconfig["htmx_lsp"].setup({
+lspconfig["htmx"].setup({
 	capabilities = Capabilities,
 	on_attach = on_attach,
 })
