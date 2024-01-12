@@ -129,6 +129,7 @@ lspconfig["pylsp"].setup({
 
 lspconfig["htmx"].setup({
 	capabilities = Capabilities,
+	filetypes = { "html", "astro" },
 	on_attach = on_attach,
 })
 
