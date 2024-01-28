@@ -18,6 +18,22 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "rust",
+	callback = function()
+		opt.tabstop = 4
+		opt.shiftwidth = 4
+	end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "html",
+	callback = function()
+		opt.tabstop = 2
+		opt.shiftwidth = 2
+	end,
+})
+
 -- rust settings
 vim.g.rust_recommended_style = 0
 vim.g.rustfmt_autosave = 1

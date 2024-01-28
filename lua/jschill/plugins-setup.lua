@@ -143,7 +143,19 @@ local plugins = {
 		opts = {
 			-- configuration goes here
 			lang = "python",
-			arg = "leetcode.nvim"
+			arg = "leetcode.nvim",
+		},
+	},
+	{
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		event = "InsertEnter",
+	},
+	{
+		"zbirenbaum/copilot-cmp",
+		dependencies = {
+			"hrsh7th/nvim-cmp",
+			"zbirenbaum/copilot.lua",
 		},
 	},
 }
