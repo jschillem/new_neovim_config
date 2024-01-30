@@ -1,9 +1,3 @@
--- local status, _ = pcall(vim.cmd, "colorscheme onedark_vivid")
--- if not status then
--- 	print("Colorscheme not found!")
--- 	return
--- end
-
 local status, kanagawa = pcall(require, "kanagawa")
 if not status then
 	return
