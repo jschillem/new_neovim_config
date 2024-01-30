@@ -26,7 +26,6 @@ NVIM_APPNAME=jschillem/new_neovim_config/ nvim
 ### colorscheme
 
 - [rebelot/kanagawa.nvim](https://dotfyle.com/plugins/rebelot/kanagawa.nvim)
-- [folke/tokyonight.nvim](https://dotfyle.com/plugins/folke/tokyonight.nvim)
 
 ### comment
 
@@ -36,11 +35,6 @@ NVIM_APPNAME=jschillem/new_neovim_config/ nvim
 
 - [hrsh7th/nvim-cmp](https://dotfyle.com/plugins/hrsh7th/nvim-cmp)
 - [zbirenbaum/copilot.lua](https://dotfyle.com/plugins/zbirenbaum/copilot.lua)
-
-### debugging
-
-- [mfussenegger/nvim-dap](https://dotfyle.com/plugins/mfussenegger/nvim-dap)
-- [rcarriga/nvim-dap-ui](https://dotfyle.com/plugins/rcarriga/nvim-dap-ui)
 
 ### editing-support
 
@@ -89,10 +83,6 @@ NVIM_APPNAME=jschillem/new_neovim_config/ nvim
 ### plugin-manager
 
 - [folke/lazy.nvim](https://dotfyle.com/plugins/folke/lazy.nvim)
-
-### remote-development
-
-- [chipsenkbeil/distant.nvim](https://dotfyle.com/plugins/chipsenkbeil/distant.nvim)
 
 ### snippet
 
