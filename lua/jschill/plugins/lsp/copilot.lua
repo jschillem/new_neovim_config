@@ -10,3 +10,6 @@ copilot.setup({
 	panel = { enabled = false },
 })
 cp_cmp.setup({})
+
+-- Write it so I can toggle on/off copilot autocomplete with the <Leader>gct keybinding (copilot toggle)
+vim.api.nvim_set_keymap("n", "<Leader>gct", "<cmd>Copilot toggle<CR>", { noremap = true, silent = true })
