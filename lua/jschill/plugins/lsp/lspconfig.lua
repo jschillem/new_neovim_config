@@ -76,6 +76,11 @@ lspconfig["jdtls"].setup({
 	on_attach = on_attach,
 })
 
+lspconfig["lemminx"].setup({
+	capabilities = Capabilities,
+	on_attach = on_attach,
+})
+
 lspconfig["gdscript"].setup({
 	capabilities = Capabilities,
 	on_attach = on_attach,
@@ -84,6 +89,12 @@ lspconfig["gdscript"].setup({
 lspconfig["rust_analyzer"].setup({
 	capabilities = Capabilities,
 	on_attach = on_attach,
+})
+
+lspconfig["wgsl_analyzer"].setup({
+	capabilities = Capabilities,
+	on_attach = on_attach,
+	filetypes = { "wgsl" },
 })
 
 lspconfig["tailwindcss"].setup({
