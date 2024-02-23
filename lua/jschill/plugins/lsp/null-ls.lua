@@ -27,7 +27,9 @@ null_ls.setup({
 		formatting.gdformat,
 		formatting.csharpier,
 		formatting.xmllint,
+		formatting.buf,
 		diagnostics.ruff,
+		diagnostics.buf,
 	},
 
 	-- configure format on save
