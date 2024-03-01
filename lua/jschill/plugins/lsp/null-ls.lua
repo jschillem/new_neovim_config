@@ -17,18 +17,13 @@ null_ls.setup({
 		}),
 		formatting.djlint,
 		formatting.stylua,
-		formatting.rustfmt,
 		formatting.sqlfmt,
-		formatting.taplo,
 		formatting.gofmt,
-		formatting.ruff,
 		formatting.ocamlformat,
 		formatting.clang_format,
 		formatting.gdformat,
 		formatting.csharpier,
-		formatting.xmllint,
 		formatting.buf,
-		diagnostics.ruff,
 		diagnostics.buf,
 	},
 
@@ -48,3 +43,12 @@ null_ls.setup({
 		end
 	end,
 })
+
+local notify = vim.notify
+vim.notify = function(msg, ...)
+	if msg:match("warning: multiple different client offset_encodings") then
+		return
+	end
+
+	notify(msg, ...)
+end

@@ -26,8 +26,7 @@ local keymap = vim.keymap
 local on_attach = function(client, bufnr)
 	-- keybind options
 	local opts = { noremap = true, silent = true, buffer = bufnr }
-	-- vim.lsp.buf.inlay_hint(bufnr, true)
-
+	--
 	-- set keybinds
 	keymap.set("n", "gf", "<cmd>Lspsaga lsp_finder<CR>", opts) -- show definition, references
 	keymap.set("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts) -- got to declaration
@@ -45,8 +44,12 @@ local on_attach = function(client, bufnr)
 	keymap.set("n", "<leader>o", "<cmd>LSoutlineToggle<CR>", opts) -- see outline on right hand side
 
 	if client.name == "tsserver" then
-		keymap.set("n", "<leader>rf", ":TypescriptRenameFile<CR>")
+		keymap.set("n", "<leader>rf", "<cmd>TypescriptRenameFile<CR>", opts)
 	end
+
+	-- if client.server_capabilities.inlayHintProvider then
+	-- 	vim.lsp.inlay_hint.enable(bufnr)
+	-- end
 end
 
 local Capabilities = cmp_nvim_lsp.default_capabilities()
@@ -132,7 +135,17 @@ lspconfig["eslint"].setup({
 	},
 })
 
+lspconfig["ruby_ls"].setup({
+	capabilities = Capabilities,
+	on_attach = on_attach,
+})
+
 lspconfig["pylsp"].setup({
+	capabilities = Capabilities,
+	on_attach = on_attach,
+})
+
+lspconfig["ruff_lsp"].setup({
 	capabilities = Capabilities,
 	on_attach = on_attach,
 })

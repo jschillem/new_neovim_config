@@ -44,7 +44,6 @@ mason_null_ls.setup({
 		"prettier",
 		"stylua",
 		"gofmt",
-		"ruff",
 		"gdtoolkit",
 	},
 })
