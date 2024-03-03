@@ -35,7 +35,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- detect wgsl files
-vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 	pattern = "*.wgsl",
 	callback = function()
 		vim.bo.filetype = "wgsl"
@@ -67,7 +67,7 @@ opt.clipboard:append("unnamedplus")
 opt.splitright = true
 opt.splitbelow = true
 
--- remove line wrapping / auto newline'
+-- remove line wrapping / auto newline
 opt.textwidth = 130
 opt.formatoptions = opt.formatoptions + "t" + "c"
 

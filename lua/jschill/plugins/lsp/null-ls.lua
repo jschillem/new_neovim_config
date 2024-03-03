@@ -20,7 +20,7 @@ null_ls.setup({
 		formatting.sqlfmt,
 		formatting.gofmt,
 		formatting.ocamlformat,
-		formatting.clang_format,
+		-- formatting.clang_format,
 		formatting.gdformat,
 		formatting.csharpier,
 		formatting.buf,

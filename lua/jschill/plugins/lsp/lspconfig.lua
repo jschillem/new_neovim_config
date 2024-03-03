@@ -3,7 +3,7 @@ if not neodev_status then
 	return
 end
 
-neodev.setup({})
+neodev.setup()
 
 local lspconfig_status, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_status then
@@ -64,27 +64,7 @@ lspconfig["cssls"].setup({
 	on_attach = on_attach,
 })
 
-lspconfig["prismals"].setup({
-	capabilities = Capabilities,
-	on_attach = on_attach,
-})
-
 lspconfig["clangd"].setup({
-	capabilities = Capabilities,
-	on_attach = on_attach,
-})
-
-lspconfig["jdtls"].setup({
-	capabilities = Capabilities,
-	on_attach = on_attach,
-})
-
-lspconfig["lemminx"].setup({
-	capabilities = Capabilities,
-	on_attach = on_attach,
-})
-
-lspconfig["gdscript"].setup({
 	capabilities = Capabilities,
 	on_attach = on_attach,
 })
@@ -92,12 +72,6 @@ lspconfig["gdscript"].setup({
 lspconfig["rust_analyzer"].setup({
 	capabilities = Capabilities,
 	on_attach = on_attach,
-})
-
-lspconfig["wgsl_analyzer"].setup({
-	capabilities = Capabilities,
-	on_attach = on_attach,
-	filetypes = { "wgsl" },
 })
 
 lspconfig["tailwindcss"].setup({
@@ -118,6 +92,9 @@ lspconfig["lua_ls"].setup({
 			completion = {
 				callSnippet = "Replace",
 			},
+			diagnostics = {
+				globals = { "vim" },
+			},
 		},
 	},
 })
@@ -135,7 +112,7 @@ lspconfig["eslint"].setup({
 	},
 })
 
-lspconfig["ruby_ls"].setup({
+lspconfig["zls"].setup({
 	capabilities = Capabilities,
 	on_attach = on_attach,
 })
@@ -166,27 +143,12 @@ lspconfig["gopls"].setup({
 	on_attach = on_attach,
 })
 
-lspconfig["bufls"].setup({
-	capabilities = Capabilities,
-	on_attach = on_attach,
-})
-
-lspconfig["ocamllsp"].setup({
-	capabilities = Capabilities,
-	on_attach = on_attach,
-})
-
 lspconfig["taplo"].setup({
 	capabilities = Capabilities,
 	on_attach = on_attach,
 })
 
 lspconfig["astro"].setup({
-	capabilities = Capabilities,
-	on_attach = on_attach,
-})
-
-lspconfig["sqlls"].setup({
 	capabilities = Capabilities,
 	on_attach = on_attach,
 })
