@@ -46,5 +46,8 @@
         "/home/jschill/.local/share/nvim/lazy/cmp-nvim-lsp-signature-help/lua",
         "/home/jschill/.config/nvim/lua",
         "${3rd}/luv/library"
+    ],
+    "diagnostics.globals": [
+        "on_attach"
     ]
 }

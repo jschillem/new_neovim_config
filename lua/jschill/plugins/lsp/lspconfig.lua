@@ -3,8 +3,6 @@ if not neodev_status then
 	return
 end
 
-neodev.setup()
-
 local lspconfig_status, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_status then
 	return
@@ -19,6 +17,8 @@ local typescript_status, typescript = pcall(require, "typescript")
 if not typescript_status then
 	return
 end
+
+neodev.setup()
 
 local keymap = vim.keymap
 
@@ -64,6 +64,11 @@ lspconfig["cssls"].setup({
 	on_attach = on_attach,
 })
 
+-- lspconfig["sqls"].setup({
+-- 	capabilities = Capabilities,
+-- 	on_attach = on_attach,
+-- })
+
 lspconfig["clangd"].setup({
 	capabilities = Capabilities,
 	on_attach = on_attach,
@@ -91,9 +96,6 @@ lspconfig["lua_ls"].setup({
 		Lua = {
 			completion = {
 				callSnippet = "Replace",
-			},
-			diagnostics = {
-				globals = { "vim" },
 			},
 		},
 	},

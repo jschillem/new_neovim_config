@@ -17,7 +17,6 @@ null_ls.setup({
 		}),
 		formatting.djlint,
 		formatting.stylua,
-		formatting.sqlfmt,
 		formatting.gofmt,
 		formatting.ocamlformat,
 		-- formatting.clang_format,
