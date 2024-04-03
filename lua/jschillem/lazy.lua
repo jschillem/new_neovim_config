@@ -155,9 +155,12 @@ local plugins = {
 		"stevearc/conform.nvim",
 		opts = {},
 	},
+	{
+		"ray-x/lsp_signature.nvim",
+		event = "VeryLazy",
+	},
 }
 
-local opts = {
-}
+local opts = {}
 
 require("lazy").setup(plugins, opts)

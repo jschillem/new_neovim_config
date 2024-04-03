@@ -42,13 +42,8 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
--- detect wgsl files
-vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
-	pattern = "*.wgsl",
-	callback = function()
-		vim.bo.filetype = "wgsl"
-	end,
-})
+vim.filetype.add({ extension = { wgsl = "wgsl" } })
+vim.filetype.add({ extension = { templ = "templ" } })
 
 -- rust settings
 vim.g.rust_recommended_style = 0

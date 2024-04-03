@@ -145,6 +145,11 @@ lspconfig["gopls"].setup({
 	on_attach = on_attach,
 })
 
+lspconfig["templ"].setup({
+	capabilities = Capabilities,
+	on_attach = on_attach,
+})
+
 lspconfig["taplo"].setup({
 	capabilities = Capabilities,
 	on_attach = on_attach,
@@ -155,9 +160,22 @@ lspconfig["astro"].setup({
 	on_attach = on_attach,
 })
 
-lspconfig["emmet_ls"].setup({
+lspconfig["emmet_language_server"].setup({
 	capabilities = Capabilities,
 	on_attach = on_attach,
+	filetypes = {
+		"css",
+		"templ",
+		"eruby",
+		"html",
+		"htmldjango",
+		"javascriptreact",
+		"less",
+		"pug",
+		"sass",
+		"scss",
+		"typescriptreact",
+	},
 })
 
 typescript.setup({
