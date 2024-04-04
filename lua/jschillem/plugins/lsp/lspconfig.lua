@@ -12,6 +12,10 @@ return {
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 		local keymap = vim.keymap
 
+		vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
+		vim.lsp.handlers["textDocument/signatureHelp"] =
+			vim.lsp.with(vim.lsp.handlers.signature_help, { border = "single" })
+
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 			callback = function(ev)
@@ -87,8 +91,8 @@ return {
 					end,
 				})
 			end,
-			["emmet_ls"] = function()
-				lspconfig["emmet_ls"].setup({
+			["emmet_language_server"] = function()
+				lspconfig["emmet_language_server"].setup({
 					capabilities = capabilities,
 					filetypes = {
 						"html",

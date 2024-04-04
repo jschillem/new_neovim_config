@@ -1,7 +1,9 @@
 return {
-  "stevearc/dressing.nvim",
-  event = "VeryLazy",
-  opts = {
-
-  }
+	"stevearc/dressing.nvim",
+	event = "VeryLazy",
+	opts = {
+		input = {
+			border = "single",
+		},
+	},
 }
