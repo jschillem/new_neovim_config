@@ -1,61 +1,26 @@
-local opt = vim.opt -- for conciseness
+vim.cmd("let g:netrw_liststyle = 3")
 
--- line numbers
+local opt = vim.opt
+
 opt.relativenumber = true
 opt.number = true
 
--- tabs & indentations
+
+-- tabs & indentation
 opt.tabstop = 2
 opt.shiftwidth = 2
 opt.expandtab = true
 opt.autoindent = true
 
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "cs",
-	callback = function()
-		opt.tabstop = 4
-		opt.shiftwidth = 4
-	end,
-})
+opt.wrap = false
 
--- vim.api.nvim_create_autocmd("FileType", {
--- 	pattern = "c",
--- 	callback = function()
--- 		opt.tabstop = 4
--- 		opt.shiftwidth = 4
--- 	end,
--- })
+-- search settings
+opt.ignorecase = true
+opt.smartcase = true
 
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "rust",
-	callback = function()
-		opt.tabstop = 4
-		opt.shiftwidth = 4
-	end,
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "html",
-	callback = function()
-		opt.tabstop = 2
-		opt.shiftwidth = 2
-	end,
-})
-
-vim.filetype.add({ extension = { wgsl = "wgsl" } })
-vim.filetype.add({ extension = { templ = "templ" } })
-
--- rust settings
-vim.g.rust_recommended_style = 0
-vim.g.rustfmt_autosave = 1
-
--- scroll off
-opt.scrolloff = 8
-
--- cursor line
 opt.cursorline = true
 
--- appearance
+-- turn on termguicolors
 opt.termguicolors = true
 opt.background = "dark"
 opt.signcolumn = "yes"
@@ -70,8 +35,8 @@ opt.clipboard:append("unnamedplus")
 opt.splitright = true
 opt.splitbelow = true
 
--- remove line wrapping / auto newline
-opt.textwidth = 130
-opt.formatoptions = opt.formatoptions + "t" + "c"
+-- add not detected filetypes
+vim.filetype.add({ extension = { templ = "templ" } })
+vim.filetype.add({ extension = { wgsl = "wgsl" } })
 
-opt.iskeyword:append("-")
+

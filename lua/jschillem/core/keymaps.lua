@@ -1,49 +1,21 @@
 vim.g.mapleader = " "
 
-local keymap = vim.keymap -- for conciseness
+local keymap = vim.keymap
 
--- general keymaps
+keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
 
--- clear highlights
-keymap.set("n", "<leader>nh", ":nohl<CR>")
+-- increment/decrement numbers
+keymap.set("n", "<leader>+", "<C-a>", { desc = "Increment number" })
+keymap.set("n", "<leader>-", "<C-x>", { desc = "Decrement number" })
 
--- cause x not to save to clipbaord
-keymap.set("n", "x", '"_x')
+-- window management
+keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
+keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" })
+keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" })
+keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" })
 
--- increment/decrement
-keymap.set("n", "<leader>+", "<C-a>")
-keymap.set("n", "<leader>-", "<C-x>")
-
--- window splitting
-keymap.set("n", "<leader>sv", "<C-w>v")
-keymap.set("n", "<leader>sh", "<C-w>s")
-keymap.set("n", "<leader>se", "<C-w>=")
-keymap.set("n", "<leader>sx", ":close<CR>")
-
--- tabs
-keymap.set("n", "<leader>to", ":tabnew<CR>")
-keymap.set("n", "<leader>tx", ":tabclose<CR>")
-keymap.set("n", "<leader>tn", ":tabn<CR>")
-keymap.set("n", "<leader>tp", ":tabp<CR>")
-
--- Add 'zz' to <C-d> & <C-u>
-keymap.set("n", "<C-u>", "<C-u>zz")
-keymap.set("n", "<C-d>", "<C-d>zz")
-
--- plugin keymaps
-
--- vim-maximizer
-keymap.set("n", "<leader>sm", ":MaximizerToggle<CR>")
-
--- nvim-tree
-keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>")
-
--- telescope
-keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>")
-keymap.set("n", "<leader>gf", "<cmd>Telescope git_files<cr>")
-keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>")
-keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>")
-keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>")
-keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>")
-keymap.set("n", "<leader>ft", "<cmd>Telescope lsp_document_symbols<cr>")
-keymap.set("n", "/", "<cmd>Telescope current_buffer_fuzzy_find<cr>")
+keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" })
+keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" })
+keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" })
+keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" })
+keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })

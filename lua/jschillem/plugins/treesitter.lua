@@ -1,39 +1,33 @@
-local status, treesitter = pcall(require, "nvim-treesitter.configs")
-if not status then
-	return
-end
+return {
+	"nvim-treesitter/nvim-treesitter",
+	event = { "BufReadPre", "BufNewFile" },
+	build = ":TSUpdate",
+	dependencies = {
+		"windwp/nvim-ts-autotag",
+	},
+	config = function()
+		local treesitter = require("nvim-treesitter.configs")
 
-treesitter.setup({
-	highlight = {
-		enable = true,
-	},
-	indent = { enable = true },
-	autotag = { enable = true },
-	ensure_installed = {
-		"json",
-		"markdown",
-		"markdown_inline",
-		"c",
-		"svelte",
-		"cpp",
-		"rust",
-		"sql",
-		"javascript",
-		"typescript",
-		"gitcommit",
-		"lua",
-		"regex",
-		"python",
-		"html",
-		"css",
-		"make",
-		"gitignore",
-		"glsl",
-		"toml",
-	},
-	auto_install = true,
-	context_commentstring = {
-		enable = true,
-		enable_autocmd = false,
-	},
-})
+		treesitter.setup({
+			auto_install = true,
+			highlight = {
+				enable = true,
+			},
+			indent = {
+				enable = true,
+			},
+			autotag = {
+				enable = true,
+			},
+			incremental_selection = {
+				enable = true,
+				keymaps = {
+					init_selection = "<C-space>",
+					node_incremental = "<C-space>",
+					scope_incremental = false,
+					node_decremental = "<bs>",
+				},
+			},
+		})
+	end,
+}
