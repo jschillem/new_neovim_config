@@ -1,42 +1,40 @@
-local jschillem = {
-}
+local jschillem = {}
 
 return {
-  "goolord/alpha-nvim",
-  event = "VimEnter",
-  config = function()
-    local alpha = require("alpha")
-    local dashboard = require("alpha.themes.dashboard")
-    
-    -- set header
-    dashboard.section.header.val = {
-      " ▄▄▄██▀▀▀██████ ▄████▄   ██░ ██  ██▓ ██▓     ██▓    ▓█████ ███▄ ▄███▓",
-      "   ▒██ ▒██    ▒▒██▀ ▀█  ▓██░ ██▒▓██▒▓██▒    ▓██▒    ▓█   ▀▓██▒▀█▀ ██▒",
-      "   ░██ ░ ▓██▄  ▒▓█    ▄ ▒██▀▀██░▒██▒▒██░    ▒██░    ▒███  ▓██    ▓██░",
-      "▓██▄██▓  ▒   ██▒▓▓▄ ▄██▒░▓█ ░██ ░██░▒██░    ▒██░    ▒▓█  ▄▒██    ▒██ ",
-      " ▓███▒ ▒██████▒▒ ▓███▀ ░░▓█▒░██▓░██░░██████▒░██████▒░▒████▒██▒   ░██▒",
-      " ▒▓▒▒░ ▒ ▒▓▒ ▒ ░ ░▒ ▒  ░ ▒ ░░▒░▒░▓  ░ ▒░▓  ░░ ▒░▓  ░░░ ▒░ ░ ▒░   ░  ░",
-      " ▒ ░▒░ ░ ░▒  ░ ░ ░  ▒    ▒ ░▒░ ░ ▒ ░░ ░ ▒  ░░ ░ ▒  ░ ░ ░  ░  ░      ░",
-      " ░ ░ ░ ░  ░  ░ ░         ░  ░░ ░ ▒ ░  ░ ░     ░ ░      ░  ░      ░   ",
-      " ░   ░       ░ ░ ░       ░  ░  ░ ░      ░  ░    ░  ░   ░  ░      ░   ",
-      "               ░                                                     ",
-    }
+	"goolord/alpha-nvim",
+	event = "VimEnter",
+	config = function()
+		local alpha = require("alpha")
+		local dashboard = require("alpha.themes.dashboard")
 
-    -- Set menu
-    dashboard.section.buttons.val = {
-      dashboard.button("e", "  > New File", "<cmd>ene<CR>"),
-      dashboard.button("SPC ee", "  > Toggle file explorer", "<cmd>NvimTreeToggle<CR>"),
-      dashboard.button("SPC ff", "󰱼 > Find File", "<cmd>Telescope find_files<CR>"),
-      dashboard.button("SPC fs", "  > Find Word", "<cmd>Telescope live_grep<CR>"),
-      dashboard.button("SPC wr", "󰁯  > Restore Session For Current Directory", "<cmd>SessionRestore<CR>"),
-      dashboard.button("q", " > Quit NVIM", "<cmd>qa<CR>"),
-    }
+		-- set header
+		dashboard.section.header.val = {
+			" ▄▄▄██▀▀▀██████ ▄████▄   ██░ ██  ██▓ ██▓     ██▓    ▓█████ ███▄ ▄███▓",
+			"   ▒██ ▒██    ▒▒██▀ ▀█  ▓██░ ██▒▓██▒▓██▒    ▓██▒    ▓█   ▀▓██▒▀█▀ ██▒",
+			"   ░██ ░ ▓██▄  ▒▓█    ▄ ▒██▀▀██░▒██▒▒██░    ▒██░    ▒███  ▓██    ▓██░",
+			"▓██▄██▓  ▒   ██▒▓▓▄ ▄██▒░▓█ ░██ ░██░▒██░    ▒██░    ▒▓█  ▄▒██    ▒██ ",
+			" ▓███▒ ▒██████▒▒ ▓███▀ ░░▓█▒░██▓░██░░██████▒░██████▒░▒████▒██▒   ░██▒",
+			" ▒▓▒▒░ ▒ ▒▓▒ ▒ ░ ░▒ ▒  ░ ▒ ░░▒░▒░▓  ░ ▒░▓  ░░ ▒░▓  ░░░ ▒░ ░ ▒░   ░  ░",
+			" ▒ ░▒░ ░ ░▒  ░ ░ ░  ▒    ▒ ░▒░ ░ ▒ ░░ ░ ▒  ░░ ░ ▒  ░ ░ ░  ░  ░      ░",
+			" ░ ░ ░ ░  ░  ░ ░         ░  ░░ ░ ▒ ░  ░ ░     ░ ░      ░  ░      ░   ",
+			" ░   ░       ░ ░ ░       ░  ░  ░ ░      ░  ░    ░  ░   ░  ░      ░   ",
+			"               ░                                                     ",
+		}
 
-    -- Send config to alpha
-    alpha.setup(dashboard.opts)
+		-- Set menu
+		dashboard.section.buttons.val = {
+			dashboard.button("n", "  > New File", "<cmd>ene<CR>"),
+			dashboard.button("SPC e", "  > Toggle file explorer", "<cmd>NvimTreeToggle<CR>"),
+			dashboard.button("SPC ff", "󰱼 > Find File", "<cmd>Telescope find_files<CR>"),
+			dashboard.button("SPC fs", "  > Find Word", "<cmd>Telescope live_grep<CR>"),
+			dashboard.button("SPC wr", "󰁯  > Restore Session For Current Directory", "<cmd>SessionRestore<CR>"),
+			dashboard.button("q", " > Quit NVIM", "<cmd>qa<CR>"),
+		}
 
-    -- Disable folding on alpha buffer
-    vim.cmd([[autocmd FileType alpha setlocal nofoldenable]])
+		-- Send config to alpha
+		alpha.setup(dashboard.opts)
 
-  end
+		-- Disable folding on alpha buffer
+		vim.cmd([[autocmd FileType alpha setlocal nofoldenable]])
+	end,
 }
