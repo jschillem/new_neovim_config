@@ -47,6 +47,7 @@ return {
 		keymap.set("n", "<leader>db", dap.toggle_breakpoint, { desc = "toggle breakpoint" })
 		keymap.set("n", "<leader>dc", dap.continue, { desc = "Launch/Continue debug execution" })
 		keymap.set("n", "<leader>do", dap.step_over, { desc = "Step over" })
+		keymap.set("n", "<leader>du", dap.step_out, { desc = "Step out" })
 		keymap.set("n", "<leader>di", dap.step_into, { desc = "Step into" })
 		keymap.set("n", "<leader>ds", dap.stop, { desc = "Stop" })
 		keymap.set("n", "<leader>dr", dap.repl.open, { desc = "Open REPL" })
