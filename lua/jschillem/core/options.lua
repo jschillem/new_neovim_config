@@ -2,9 +2,10 @@ vim.cmd("let g:netrw_liststyle = 3")
 
 local opt = vim.opt
 
+vim.g.have_nerd_font = true
+
 opt.relativenumber = true
 opt.number = true
-
 
 -- tabs & indentation
 opt.tabstop = 2
@@ -38,5 +39,3 @@ opt.splitbelow = true
 -- add not detected filetypes
 vim.filetype.add({ extension = { templ = "templ" } })
 vim.filetype.add({ extension = { wgsl = "wgsl" } })
-
-

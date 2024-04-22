@@ -18,6 +18,7 @@ return {
 				"htmx",
 				"cssls",
 				"tailwindcss",
+				"eslint",
 				"astro",
 				"svelte",
 				"lua_ls",
@@ -35,9 +36,9 @@ return {
 		mason_tool_installer.setup({
 			ensure_installed = {
 				"prettier",
-				"eslint_d",
 				"stylua",
 				"curlylint",
+				"golangci-lint",
 			},
 		})
 	end,
