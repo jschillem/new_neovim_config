@@ -6,6 +6,7 @@ return {
 	},
 	config = function()
 		local mason = require("mason")
+		local mr = require("mason-registry")
 		local mason_lspconfig = require("mason-lspconfig")
 		local mason_tool_installer = require("mason-tool-installer")
 
@@ -28,7 +29,6 @@ return {
 				"clangd",
 				"gopls",
 				"templ",
-				"rust_analyzer",
 				"taplo",
 			},
 		})

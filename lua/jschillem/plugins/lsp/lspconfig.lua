@@ -70,6 +70,11 @@ return {
 			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 		end
 
+		lspconfig["rust_analyzer"].setup({
+			capabilities = capabilities,
+			cmd = { "rust-analyzer" },
+		})
+
 		mason_lspconfig.setup_handlers({
 			function(server_name)
 				lspconfig[server_name].setup({
