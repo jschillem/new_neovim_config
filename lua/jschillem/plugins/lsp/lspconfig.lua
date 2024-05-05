@@ -96,6 +96,7 @@ return {
 					capabilities = capabilities,
 					filetypes = {
 						"html",
+						"htmldjango",
 						"typescriptreact",
 						"javascriptreact",
 						"css",

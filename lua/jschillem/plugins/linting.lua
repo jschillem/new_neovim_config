@@ -7,6 +7,7 @@ return {
 		lint.linters_by_ft = {
 			python = { "curlylint" },
 			go = { "golangcilint" },
+			htmldjango = { "djlint" },
 		}
 
 		local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })

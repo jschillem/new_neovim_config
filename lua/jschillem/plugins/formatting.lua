@@ -18,6 +18,7 @@ return {
 				yaml = { "prettier" },
 				markdown = { "prettier" },
 				lua = { "stylua" },
+				htmldjango = { "djlint" },
 			},
 			format_on_save = {
 				lsp_fallback = true,
