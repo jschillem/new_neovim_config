@@ -39,3 +39,10 @@ opt.splitbelow = true
 -- add not detected filetypes
 vim.filetype.add({ extension = { templ = "templ" } })
 vim.filetype.add({ extension = { wgsl = "wgsl" } })
+vim.filetype.add({ extension = { edgedb = "esdl" } })
+vim.filetype.add({ extension = { roc = "roc" } })
+vim.filetype.add({
+	pattern = {
+		[".*%.blade.php"] = "blade",
+	},
+})

@@ -19,6 +19,8 @@ return {
 				markdown = { "prettier" },
 				lua = { "stylua" },
 				htmldjango = { "djlint" },
+				php = { "pint" },
+				blade = { "blade-formatter" },
 			},
 			format_on_save = {
 				lsp_fallback = true,

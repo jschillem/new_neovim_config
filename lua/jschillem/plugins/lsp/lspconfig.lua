@@ -75,6 +75,10 @@ return {
 			cmd = { "rust-analyzer" },
 		})
 
+		lspconfig["roc_ls"].setup({
+			capabilities = capabilities,
+		})
+
 		mason_lspconfig.setup_handlers({
 			function(server_name)
 				lspconfig[server_name].setup({
@@ -104,6 +108,8 @@ return {
 						"htmldjango",
 						"typescriptreact",
 						"javascriptreact",
+						"blade",
+						"php",
 						"css",
 						"sass",
 						"scss",
