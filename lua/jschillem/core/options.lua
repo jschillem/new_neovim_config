@@ -37,6 +37,12 @@ opt.splitright = true
 opt.splitbelow = true
 
 -- add not detected filetypes
+vim.filetype.add({
+	pattern = {
+		[".?env.*"] = "sh",
+	},
+})
+
 vim.filetype.add({ extension = { templ = "templ" } })
 vim.filetype.add({ extension = { wgsl = "wgsl" } })
 vim.filetype.add({ extension = { edgedb = "esdl" } })

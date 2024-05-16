@@ -10,6 +10,7 @@ return {
 		local lspconfig = require("lspconfig")
 		local mason_lspconfig = require("mason-lspconfig")
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
+		local env = require("jschillem.dotenv").load_env()
 		local keymap = vim.keymap
 
 		vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
@@ -133,6 +134,14 @@ return {
 								callSnippet = "Replace",
 							},
 						},
+					},
+				})
+			end,
+			["intelephense"] = function()
+				lspconfig["intelephense"].setup({
+					capabilities = capabilities,
+					init_options = {
+						licenceKey = env["INTELEPHENSE_LICENSE_KEY"],
 					},
 				})
 			end,
