@@ -143,6 +143,19 @@ return {
 					init_options = {
 						licenceKey = env["INTELEPHENSE_LICENSE_KEY"],
 					},
+					filetypes = {
+						"php",
+						"blade",
+					},
+				})
+			end,
+			["html"] = function()
+				lspconfig["html"].setup({
+					capabilities = capabilities,
+					filetypes = {
+						"html",
+						"blade",
+					},
 				})
 			end,
 		})
