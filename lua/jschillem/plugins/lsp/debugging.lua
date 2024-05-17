@@ -1,15 +1,20 @@
 return {
-	"rcarriga/nvim-dap-ui",
+	"mfussenegger/nvim-dap",
 	dependencies = {
-		"mfussenegger/nvim-dap",
+		"rcarriga/nvim-dap-ui",
+		"leoluz/nvim-dap-go",
+		"theHamsta/nvim-dap-virtual-text",
 		"nvim-neotest/nvim-nio",
 		{ "jay-babu/mason-nvim-dap.nvim" },
 	},
 	ft = { "go", "c", "cpp", "rust", "zig", "python" },
 	config = function()
-		local dap, dap_ui, mason_dap = require("dap"), require("dapui"), require("mason-nvim-dap")
+		local dap = require("dap")
+		local dap_ui = require("dapui")
+		local mason_dap = require("mason_dap")
 
 		dap_ui.setup()
+		require("dap-go").setup()
 
 		mason_dap.setup({
 			ensure_installed = {
