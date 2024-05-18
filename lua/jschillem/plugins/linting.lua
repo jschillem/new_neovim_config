@@ -5,7 +5,6 @@ return {
 		local lint = require("lint")
 
 		lint.linters_by_ft = {
-			python = { "curlylint" },
 			go = { "golangcilint" },
 			htmldjango = { "djlint" },
 		}
