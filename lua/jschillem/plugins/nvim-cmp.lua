@@ -52,5 +52,18 @@ return {
 				}),
 			},
 		})
+
+		-- luasnip keybindings
+		vim.keymap.set({ "i", "s" }, "<C-L>", function()
+			luasnip.jump(1)
+		end, { desc = "Advance in snippet" })
+
+		vim.keymap.set({ "i", "s" }, "<C-H>", function()
+			luasnip.jump(-1)
+		end, { desc = "Go back in snippet" })
+
+		vim.keymap.set({ "i", "s" }, "<C-E>", function()
+			luasnip.change_choice(1)
+		end, { desc = "Change the active snippet choice" })
 	end,
 }

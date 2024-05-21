@@ -146,6 +146,7 @@ return {
 					filetypes = {
 						"php",
 						"blade",
+						"php_only",
 					},
 				})
 			end,
