@@ -10,7 +10,7 @@ return {
 		local lspconfig = require("lspconfig")
 		local mason_lspconfig = require("mason-lspconfig")
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
-		local env = require("jschillem.dotenv").load_env()
+		local utils = require("jschillem.utils")
 		local keymap = vim.keymap
 
 		vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
@@ -141,7 +141,7 @@ return {
 				lspconfig["intelephense"].setup({
 					capabilities = capabilities,
 					init_options = {
-						licenceKey = env["INTELEPHENSE_LICENSE_KEY"],
+						licenceKey = utils.load_env()["INTELEPHENSE_LICENSE_KEY"],
 					},
 					filetypes = {
 						"php",
@@ -167,18 +167,21 @@ return {
 							{
 								name = "@vue/typescript-plugin",
 								location = ".nvm/versions/node/v20.11.1/lib/node_modules/@vue/typescript-plugin",
-								languages = { "javascript", "typescript", "vue" },
+								languages = { "vue" },
 							},
 						},
 					},
-					filetypes = {
-						"javascript",
-						"javascriptreact",
-						"javascript.jsx",
-						"typescript",
-						"typescriptreact",
-						"typescript.tsx",
-						"vue",
+				})
+			end,
+			["volar"] = function()
+				lspconfig["volar"].setup({
+					on_new_config = function(new_config, new_root_dir)
+						new_config.init_options.typescript.tsdk = utils.get_typescript_server_path(new_root_dir)
+					end,
+					init_options = {
+						vue = {
+							hybridMode = false,
+						},
 					},
 				})
 			end,
