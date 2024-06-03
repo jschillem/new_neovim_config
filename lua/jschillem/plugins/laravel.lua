@@ -1,9 +1,9 @@
 return {
 	"adalessa/laravel.nvim",
 	cond = function()
-		-- detect if composer.json is present in current directory or any parent directory up to 3 levels
+		-- detect if composer.json is present in current directory or any parent directory up to 4 levels
 		local path = vim.fn.getcwd()
-		for _ = 1, 3 do
+		for _ = 1, 4 do
 			if vim.fn.filereadable(path .. "/composer.json") == 1 then
 				return true
 			end

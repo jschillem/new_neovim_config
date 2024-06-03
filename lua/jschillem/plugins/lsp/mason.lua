@@ -6,7 +6,6 @@ return {
 	},
 	config = function()
 		local mason = require("mason")
-		local mr = require("mason-registry")
 		local mason_lspconfig = require("mason-lspconfig")
 		local mason_tool_installer = require("mason-tool-installer")
 
@@ -14,22 +13,10 @@ return {
 
 		mason_lspconfig.setup({
 			ensure_installed = {
-				"tsserver",
-				"html",
-				"htmx",
-				"cssls",
-				"tailwindcss",
-				"eslint",
-				"astro",
-				"svelte",
 				"lua_ls",
-				"emmet_language_server",
 				"pyright",
 				"ruff_lsp",
 				"clangd",
-				"gopls",
-				"templ",
-				"taplo",
 			},
 		})
 
@@ -37,8 +24,6 @@ return {
 			ensure_installed = {
 				"prettier",
 				"stylua",
-				"curlylint",
-				"golangci-lint",
 			},
 		})
 	end,
