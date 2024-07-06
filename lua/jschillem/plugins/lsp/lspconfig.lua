@@ -79,6 +79,10 @@ return {
 			capabilities = capabilities,
 		})
 
+		lspconfig["sourcekit"].setup({
+			capabilities = capabilities,
+		})
+
 		mason_lspconfig.setup_handlers({
 			function(server_name)
 				lspconfig[server_name].setup({
@@ -89,7 +93,7 @@ return {
 				-- configure svelte server
 				lspconfig["svelte"].setup({
 					capabilities = capabilities,
-					on_attach = function(client, bufnr)
+					on_attach = function(client, _)
 						vim.api.nvim_create_autocmd("BufWritePost", {
 							pattern = { "*.js", "*.ts" },
 							callback = function(ctx)
@@ -139,6 +143,15 @@ return {
 			["intelephense"] = function()
 				lspconfig["intelephense"].setup({
 					capabilities = capabilities,
+					settings = {
+						intelephense = {
+							environment = {
+								includePaths = {
+									"/usr/share/php/stubs",
+								},
+							},
+						},
+					},
 					init_options = {
 						licenceKey = utils.load_env()["INTELEPHENSE_LICENSE_KEY"],
 					},

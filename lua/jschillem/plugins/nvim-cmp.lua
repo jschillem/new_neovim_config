@@ -12,6 +12,7 @@ return {
 		"saadparwaiz1/cmp_luasnip",
 		"rafamadriz/friendly-snippets",
 		"onsails/lspkind.nvim",
+		"brenoprata10/nvim-highlight-colors",
 	},
 	config = function()
 		local cmp = require("cmp")

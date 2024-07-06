@@ -7,11 +7,11 @@ return {
 		"nvim-neotest/nvim-nio",
 		{ "jay-babu/mason-nvim-dap.nvim" },
 	},
-	ft = { "go", "c", "cpp", "rust", "zig", "python" },
+	ft = { "go", "c", "cpp", "rust", "zig" },
 	config = function()
 		local dap = require("dap")
 		local dap_ui = require("dapui")
-		local mason_dap = require("mason_dap")
+		local mason_dap = require("mason-nvim-dap")
 
 		dap_ui.setup()
 		require("dap-go").setup()
