@@ -1,9 +1,8 @@
 return {
-  "folke/which-key.nvim",
-  event = "VeryLazy",
-  init = function()
-    vim.o.timeout = true
-    vim.o.timeoutlen = 666
-  end,
-  opts = {},
+	"folke/which-key.nvim",
+	event = "VeryLazy",
+	opts = {
+		delay = 666,
+		preset = "classic",
+	},
 }

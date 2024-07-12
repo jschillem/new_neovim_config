@@ -4,6 +4,7 @@ return {
 	dependencies = {
 		"hrsh7th/cmp-nvim-lsp",
 		{ "antosha417/nvim-lsp-file-operations", config = true },
+		lspco,
 	},
 	config = function()
 		local lspconfig = require("lspconfig")
@@ -70,16 +71,15 @@ return {
 			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 		end
 
-		lspconfig["rust_analyzer"].setup({
-			capabilities = capabilities,
-			cmd = { "rust-analyzer" },
-		})
-
 		lspconfig["roc_ls"].setup({
 			capabilities = capabilities,
 		})
 
 		lspconfig["sourcekit"].setup({
+			capabilities = capabilities,
+		})
+
+		lspconfig["gdscript"].setup({
 			capabilities = capabilities,
 		})
 
