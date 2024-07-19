@@ -22,6 +22,7 @@ return {
 				htmldjango = { "djlint" },
 				php = { "pint" },
 				blade = { "blade-formatter" },
+				gdscript = { "gdformat" },
 			},
 			format_on_save = {
 				lsp_fallback = true,

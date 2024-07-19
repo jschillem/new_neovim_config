@@ -13,6 +13,14 @@ opt.shiftwidth = 2
 opt.expandtab = true
 opt.autoindent = true
 
+-- for gdscript, use tabs
+vim.api.nvim_create_autocmd({ "FileType" }, {
+	pattern = "gdscript",
+	callback = function()
+		vim.opt.expandtab = false
+	end,
+})
+
 opt.wrap = false
 
 -- search settings
