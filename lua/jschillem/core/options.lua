@@ -70,6 +70,7 @@ vim.filetype.add({ extension = { templ = "templ" } })
 vim.filetype.add({ extension = { wgsl = "wgsl" } })
 vim.filetype.add({ extension = { edgedb = "esdl" } })
 vim.filetype.add({ extension = { roc = "roc" } })
+vim.filetype.add({ extension = { postcss = "css" } })
 vim.filetype.add({
 	pattern = {
 		[".*%.blade.php"] = "blade",
