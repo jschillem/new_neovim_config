@@ -21,7 +21,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	end,
 })
 
-opt.wrap = false
+opt.wrap = true
 
 -- search settings
 opt.ignorecase = true
