@@ -6,6 +6,12 @@ return {
 			render = "virtual",
 			enable_tailwind = true,
 			virtual_symbol = "■",
+			exclude_filetypes = {
+				"elixir",
+				"rust",
+				"c",
+				"cpp",
+			},
 		})
 
 		-- create autocommands to turnOn and turnOff the plugin when exititing and entering insert mode
