@@ -89,6 +89,11 @@ return {
 					capabilities = capabilities,
 				})
 			end,
+			["elixirls"] = function()
+				lspconfig["elixirls"].setup({
+					cmd = { "/bin/elixir-ls" },
+				})
+			end,
 			["svelte"] = function()
 				-- configure svelte server
 				lspconfig["svelte"].setup({
