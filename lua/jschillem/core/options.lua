@@ -13,6 +13,14 @@ opt.shiftwidth = 2
 opt.expandtab = true
 opt.autoindent = true
 
+-- code folding
+opt.foldmethod = "expr"
+opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+opt.foldcolumn = "0"
+opt.foldtext = ""
+opt.foldlevel = 99
+opt.foldnestmax = 4
+
 -- for gdscript, use tabs
 vim.api.nvim_create_autocmd({ "FileType" }, {
 	pattern = "gdscript",
