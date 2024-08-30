@@ -1,7 +1,14 @@
 local M = {}
 
---- Load environment variables from a .env file
---- @return table: A table with the environment variables (key-value pairs)
+--- Loads environment variables from a .env file with caching.
+-- This function reads the .env file from the Neovim config directory,
+-- parses its contents, and stores the result in a cache. Subsequent
+-- calls return the cached result without reading the file again.
+--
+-- @return table A table containing the environment variables as key-value pairs.
+--
+-- @usage local env = require('jschillem.utils').load_env()
+--
 function M.load_env()
 	local config_dir = vim.fn.stdpath("config")
 	local env_file = config_dir .. "/.env"
@@ -20,12 +27,13 @@ end
 --- @return string: The path to the typescript server
 function M.get_typescript_server_path(root_dir)
 	local util = require("lspconfig.util")
-	local global_ts = "/home/jschillem/.nvm/versions/node/v20.11.1/lib/node_modules/typescript/lib"
+	local global_ts = "/home/jschillem/.nvm/versions/node/v20.15.1/lib/node_modules/typescript/lib"
 	local found_ts = ""
 	local function check_dir(path)
-		found_ts = util.path.join(path, "node_modules", "typescript", "lib")
-		if util.path.exists(found_ts) then
-			return path
+		local ts_path = util.path.join(path, "node_modules", "typescript", "lib")
+		if util.path.exists(ts_path) then
+			found_ts = ts_path
+			return true
 		end
 	end
 	if util.search_ancestors(root_dir, check_dir) then

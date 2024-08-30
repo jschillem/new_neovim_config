@@ -4,10 +4,10 @@ return {
 	dependencies = {
 		"hrsh7th/cmp-nvim-lsp",
 		{ "antosha417/nvim-lsp-file-operations", config = true },
-		lspco,
 	},
 	config = function()
 		local lspconfig = require("lspconfig")
+		local configs = require("lspconfig.configs")
 		local mason_lspconfig = require("mason-lspconfig")
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 		local utils = require("jschillem.utils")
@@ -71,14 +71,34 @@ return {
 			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 		end
 
-		lspconfig["roc_ls"].setup({
+		-- Setup for blade
+		configs.blade = {
+			default_config = {
+				cmd = { "laravel-dev-tools", "lsp" },
+				filetypes = { "blade" },
+				root_dir = function(fname)
+					return lspconfig.util.find_git_ancestor(fname)
+				end,
+				settings = {},
+			},
+		}
+
+		-- Special languages
+		lspconfig.blade.setup({
 			capabilities = capabilities,
 		})
 
+		-- swift
 		lspconfig["sourcekit"].setup({
 			capabilities = capabilities,
 		})
 
+		-- gleam
+		lspconfig["gleam"].setup({
+			capabilities = capabilities,
+		})
+
+		-- godot (gdscript)
 		lspconfig["gdscript"].setup({
 			capabilities = capabilities,
 		})
@@ -119,6 +139,7 @@ return {
 						"javascriptreact",
 						"blade",
 						"php",
+						"vue",
 						"css",
 						"sass",
 						"scss",
@@ -183,23 +204,28 @@ return {
 						plugins = {
 							{
 								name = "@vue/typescript-plugin",
-								location = ".nvm/versions/node/v20.11.1/lib/node_modules/@vue/typescript-plugin",
+								-- location = require("mason-registry")
+								-- 	.get_package("vue-language-server")
+								-- 	:get_install_path() .. "/node_modules/@vue/language-server",
+								location = ".nvm/versions/node/v20.15.1/lib/node_modules/@vue/typescript-plugin",
 								languages = { "vue" },
 							},
 						},
 					},
+					filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
 				})
 			end,
 			["volar"] = function()
 				lspconfig["volar"].setup({
+					capabilities = capabilities,
 					on_new_config = function(new_config, new_root_dir)
 						new_config.init_options.typescript.tsdk = utils.get_typescript_server_path(new_root_dir)
 					end,
-					init_options = {
-						vue = {
-							hybridMode = false,
-						},
-					},
+					-- init_options = {
+					-- 	vue = {
+					-- 		hybridMode = false,
+					-- 	},
+					-- },
 				})
 			end,
 		})
