@@ -91,6 +91,7 @@ return {
 		-- swift
 		lspconfig["sourcekit"].setup({
 			capabilities = capabilities,
+			filetypes = { "swift", "objective-c" },
 		})
 
 		-- gleam
@@ -198,7 +199,7 @@ return {
 				})
 			end,
 			["tsserver"] = function()
-				lspconfig["tsserver"].setup({
+				lspconfig["ts_ls"].setup({
 					capabilities = capabilities,
 					init_options = {
 						plugins = {
@@ -230,4 +231,5 @@ return {
 			end,
 		})
 	end,
+	lspcon,
 }
