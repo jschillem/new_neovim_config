@@ -198,17 +198,18 @@ return {
 					},
 				})
 			end,
-			["tsserver"] = function()
+			["ts_ls"] = function()
+				local mason_registry = require("mason-registry")
+				local vue_language_server_path = mason_registry.get_package("vue-language-server"):get_install_path()
+					.. "/node_modules/@vue/language-server"
+
 				lspconfig["ts_ls"].setup({
 					capabilities = capabilities,
 					init_options = {
 						plugins = {
 							{
 								name = "@vue/typescript-plugin",
-								-- location = require("mason-registry")
-								-- 	.get_package("vue-language-server")
-								-- 	:get_install_path() .. "/node_modules/@vue/language-server",
-								location = ".nvm/versions/node/v20.15.1/lib/node_modules/@vue/typescript-plugin",
+								location = vue_language_server_path,
 								languages = { "vue" },
 							},
 						},
@@ -216,20 +217,23 @@ return {
 					filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
 				})
 			end,
-			["volar"] = function()
-				lspconfig["volar"].setup({
-					capabilities = capabilities,
-					on_new_config = function(new_config, new_root_dir)
-						new_config.init_options.typescript.tsdk = utils.get_typescript_server_path(new_root_dir)
-					end,
-					-- init_options = {
-					-- 	vue = {
-					-- 		hybridMode = false,
-					-- 	},
-					-- },
-				})
-			end,
+			-- ["volar"] = function()
+			-- 	local mason_registry = require("mason-registry")
+			-- 	local vue_language_server_path = mason_registry.get_package("vue-language-server"):get_install_path()
+			-- 		.. "/node_modules/@vue/language-server"
+			--
+			-- 	lspconfig["volar"].setup({
+			-- 		capabilities = capabilities,
+			-- 		on_new_config = function(new_config, new_root_dir)
+			-- 			new_config.init_options.typescript.tsdk = utils.get_typescript_server_path(new_root_dir)
+			-- 		end,
+			-- 		-- init_options = {
+			-- 		-- 	vue = {
+			-- 		-- 		hybridMode = false,
+			-- 		-- 	},
+			-- 		-- },
+			-- 	})
+			-- end,
 		})
 	end,
-	lspcon,
 }
