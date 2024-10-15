@@ -9,7 +9,9 @@ return {
 		local mason_lspconfig = require("mason-lspconfig")
 		local mason_tool_installer = require("mason-tool-installer")
 
-		mason.setup()
+		mason.setup({
+			PATH = "append",
+		})
 
 		mason_lspconfig.setup({
 			ensure_installed = {

@@ -21,6 +21,7 @@ return {
 		treesitter.setup({
 			ensure_installed = {
 				"html",
+				"blade",
 				"css",
 				"php",
 				"php_only",

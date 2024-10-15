@@ -23,6 +23,7 @@ return {
 				php = { "pint" },
 				blade = { "blade-formatter" },
 				gdscript = { "gdformat" },
+				cmake = { "gersemi" },
 			},
 			format_on_save = {
 				lsp_fallback = true,

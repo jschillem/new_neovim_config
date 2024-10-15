@@ -7,7 +7,13 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		"nvim-tree/nvim-web-devicons",
 	},
-	opts = {
-		filetypes = { "markdown", "Avante" },
-	},
+	config = function()
+		local presets = require("markview.presets")
+
+		require("markview").setup({
+			filetypes = { "markdown", "Avante" },
+			checkboxes = presets.checkboxes.nerd,
+			headings = presets.headings.slanted,
+		})
+	end,
 }
