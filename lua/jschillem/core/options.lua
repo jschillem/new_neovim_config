@@ -29,6 +29,12 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	end,
 })
 
+-- godot server start
+local projectfile = vim.fn.getcwd() .. "/project.godot"
+if projectfile then
+	vim.fn.serverstart("./godothost")
+end
+
 opt.wrap = true
 
 -- search settings

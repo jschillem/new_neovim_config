@@ -13,6 +13,22 @@ return {
 		local dap_ui = require("dapui")
 		local mason_dap = require("mason-nvim-dap")
 
+		dap.adapters.godot = {
+			type = "server",
+			host = "127.0.0.1",
+			port = 6006,
+		}
+
+		dap.configurations.gdscript = {
+			{
+				type = "godot",
+				request = "launch",
+				name = "Launch scene",
+				project = "${workspaceFolder}",
+				stopOnEntry = true,
+			},
+		}
+
 		dap_ui.setup()
 		require("dap-go").setup()
 
@@ -22,6 +38,7 @@ return {
 				"delve",
 				"cppdbg",
 			},
+			automatic_installation = true,
 			handlers = {
 				function(config)
 					mason_dap.default_setup(config)
