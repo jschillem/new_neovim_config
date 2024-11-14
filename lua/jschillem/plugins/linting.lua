@@ -8,6 +8,7 @@ return {
 			go = { "golangcilint" },
 			htmldjango = { "djlint" },
 			gdscript = { "gdlint" },
+			python = { "ruff" },
 			php = { "phpstan" },
 		}
 

@@ -9,15 +9,12 @@ return {
 		local mason_lspconfig = require("mason-lspconfig")
 		local mason_tool_installer = require("mason-tool-installer")
 
-		mason.setup({
-			PATH = "append",
-		})
+		mason.setup()
 
 		mason_lspconfig.setup({
 			ensure_installed = {
 				"lua_ls",
 				"pyright",
-				"ruff_lsp",
 				"clangd",
 			},
 		})
@@ -26,6 +23,7 @@ return {
 			ensure_installed = {
 				"prettier",
 				"stylua",
+				"ruff",
 			},
 		})
 	end,
