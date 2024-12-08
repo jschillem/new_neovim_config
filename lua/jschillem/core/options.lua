@@ -7,6 +7,8 @@ vim.g.have_nerd_font = true
 opt.relativenumber = true
 opt.number = true
 
+opt.laststatus = 3
+
 -- tabs & indentation
 opt.tabstop = 2
 opt.shiftwidth = 2
