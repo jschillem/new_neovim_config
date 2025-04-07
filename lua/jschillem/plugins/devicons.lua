@@ -7,13 +7,20 @@ return {
 	},
 	event = "VeryLazy",
 	config = function()
-		-- local theme_colors = require("kanagawa.colors").setup()
-		-- local colors = theme_colors.palette
-
-		local colors = require("onedark.palette").dark
+		local theme = require("onedark.palette").dark
 
 		require("tiny-devicons-auto-colors").setup({
-			colors = colors,
+			colors = theme,
+			cache = {
+				enabled = true,
+				path = vim.fn.stdpath("cache") .. "/tiny-devicons-auto-colors-cache.json",
+			},
+			precise_search = {
+				enabled = true,
+				iteration = 10, -- It goes hand in hand with 'precision'
+				precision = 20, -- The higher the precision, better the search is
+				threshold = 23, -- Threshold to consider a color as a match (larger is more permissive)
+			},
 		})
 	end,
 }

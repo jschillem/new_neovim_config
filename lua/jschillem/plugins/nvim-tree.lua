@@ -31,6 +31,14 @@ return {
 				indent_markers = {
 					enable = true,
 				},
+				-- icons = {
+				-- 	glyphs = {
+				-- 		folder = {
+				-- 			-- arrow_closed = "", -- Icon when the folder is closed
+				-- 			-- arrow_open = "", -- Icon when the folder is open
+				-- 		},
+				-- 	},
+				-- },
 			},
 			actions = {
 				open_file = {
@@ -40,7 +48,7 @@ return {
 				},
 			},
 			filters = {
-				custom = { ".DS_Store" },
+				custom = { ".DS_Store", "^.git$" },
 				dotfiles = true,
 			},
 			git = {

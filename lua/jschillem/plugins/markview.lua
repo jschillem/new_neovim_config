@@ -1,6 +1,6 @@
 return {
 	"OXY2DEV/markview.nvim",
-	ft = { "markdown", "Avante" },
+	lazy = false,
 	dependencies = {
 		-- You may not need this if you don't lazy load
 		-- Or if the parsers are in your $RUNTIMEPATH
@@ -11,9 +11,13 @@ return {
 		local presets = require("markview.presets")
 
 		require("markview").setup({
-			filetypes = { "markdown", "Avante" },
-			checkboxes = presets.checkboxes.nerd,
-			headings = presets.headings.slanted,
+			preview = {
+				filetypes = { "markdown", "Avante" },
+				icon_provider = "devicons",
+			},
+			markdown = {
+				headings = presets.headings.glow,
+			},
 		})
 	end,
 }
