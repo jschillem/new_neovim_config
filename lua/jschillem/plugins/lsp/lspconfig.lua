@@ -7,15 +7,13 @@ return {
 	},
 	config = function()
 		local lspconfig = require("lspconfig")
-		local configs = require("lspconfig.configs")
-		local mason_lspconfig = require("mason-lspconfig")
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 		local utils = require("jschillem.utils")
 		local keymap = vim.keymap
 
-		vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
-		vim.lsp.handlers["textDocument/signatureHelp"] =
-			vim.lsp.with(vim.lsp.handlers.signature_help, { border = "single" })
+		-- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
+		vim.lsp.handlers["textDocument/hover"] = vim.lsp.buf.hover({ border = "single" })
+		vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.buf.signature_help({ border = "single" })
 
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
@@ -50,10 +48,14 @@ return {
 				keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
 
 				opts.desc = "Go to previous diagnostic"
-				keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+				keymap.set("n", "[d", function()
+					vim.diagnostic.jump({ count = -1, float = true })
+				end, opts)
 
 				opts.desc = "Go to next diagnostic"
-				keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+				keymap.set("n", "]d", function()
+					vim.diagnostic.jump({ count = 1, float = true })
+				end, opts)
 
 				opts.desc = "Show documentation for item under cursor"
 				keymap.set("n", "K", vim.lsp.buf.hover, opts)
@@ -65,33 +67,16 @@ return {
 
 		local capabilities = cmp_nvim_lsp.default_capabilities()
 
-		local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
-		for type, icon in pairs(signs) do
-			local hl = "DiagnosticSign" .. type
-			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-		end
-
-		-- Setup for blade
-		configs.blade = {
-			default_config = {
-				cmd = { "laravel-dev-tools", "lsp" },
-				filetypes = { "blade" },
-				root_dir = function(fname)
-					return lspconfig.util.find_git_ancestor(fname)
-				end,
-				settings = {},
+		vim.diagnostic.config({
+			signs = {
+				active = true,
+				text = {
+					[vim.diagnostic.severity.ERROR] = " ",
+					[vim.diagnostic.severity.WARN] = " ",
+					[vim.diagnostic.severity.HINT] = "󰠠 ",
+					[vim.diagnostic.severity.INFO] = " ",
+				},
 			},
-		}
-
-		-- Special languages
-		lspconfig.blade.setup({
-			capabilities = capabilities,
-		})
-
-		-- swift
-		lspconfig["sourcekit"].setup({
-			capabilities = capabilities,
-			filetypes = { "swift", "objective-c" },
 		})
 
 		-- gleam
@@ -104,136 +89,100 @@ return {
 			capabilities = capabilities,
 		})
 
-		mason_lspconfig.setup_handlers({
-			function(server_name)
-				lspconfig[server_name].setup({
-					capabilities = capabilities,
-				})
-			end,
-			["elixirls"] = function()
-				lspconfig["elixirls"].setup({
-					cmd = { "/bin/elixir-ls" },
-				})
-			end,
-			["svelte"] = function()
-				-- configure svelte server
-				lspconfig["svelte"].setup({
-					capabilities = capabilities,
-					on_attach = function(client, _)
-						vim.api.nvim_create_autocmd("BufWritePost", {
-							pattern = { "*.js", "*.ts" },
-							callback = function(ctx)
-								-- Here use ctx.match instead of ctx.file
-								client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
-							end,
-						})
+		-- wgsl
+		lspconfig["wgsl_analyzer"].setup({
+			capabilities = capabilities,
+		})
+
+		vim.lsp.config("*", {
+			capabilities = capabilities,
+		})
+
+		vim.lsp.config("elixirls", {
+			cmd = { "/bin/elixir-ls" },
+		})
+
+		vim.lsp.config("svelte", {
+			on_attach = function(client, _)
+				vim.api.nvim_create_autocmd("BufWritePost", {
+					pattern = { "*.js", "*.ts" },
+					callback = function(ctx)
+						-- Here use ctx.match instead of ctx.file
+						client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
 					end,
 				})
 			end,
-			["emmet_language_server"] = function()
-				lspconfig["emmet_language_server"].setup({
-					capabilities = capabilities,
-					filetypes = {
-						"html",
-						"htmldjango",
-						"typescriptreact",
-						"javascriptreact",
-						"blade",
-						"php",
-						"vue",
-						"css",
-						"sass",
-						"scss",
-						"less",
-						"svelte",
-						"astro",
-						"templ",
-					},
-				})
-			end,
-			["lua_ls"] = function()
-				lspconfig["lua_ls"].setup({
-					capabilities = capabilities,
-					settings = {
-						Lua = {
-							-- make the language server recognize "vim" global
-							diagnostics = {
-								globals = { "vim" },
-							},
-							completion = {
-								callSnippet = "Replace",
-							},
-						},
-					},
-				})
-			end,
-			["intelephense"] = function()
-				lspconfig["intelephense"].setup({
-					capabilities = capabilities,
-					settings = {
-						intelephense = {
-							environment = {
-								includePaths = {
-									"/usr/share/php/stubs",
-								},
-							},
-						},
-					},
-					init_options = {
-						licenceKey = utils.load_env()["INTELEPHENSE_LICENSE_KEY"],
-					},
-					filetypes = {
-						"php",
-						"blade",
-						"php_only",
-					},
-				})
-			end,
-			["html"] = function()
-				lspconfig["html"].setup({
-					capabilities = capabilities,
-					filetypes = {
-						"html",
-						"blade",
-					},
-				})
-			end,
-			["ts_ls"] = function()
-				local mason_registry = require("mason-registry")
-				local vue_language_server_path = mason_registry.get_package("vue-language-server"):get_install_path()
-					.. "/node_modules/@vue/language-server"
+		})
 
-				lspconfig["ts_ls"].setup({
-					capabilities = capabilities,
-					init_options = {
-						plugins = {
-							{
-								name = "@vue/typescript-plugin",
-								location = vue_language_server_path,
-								languages = { "vue" },
-							},
+		vim.lsp.config("emmet_language_server", {
+			filetypes = {
+				"html",
+				"htmldjango",
+				"typescriptreact",
+				"javascriptreact",
+				"blade",
+				"php",
+				"vue",
+				"css",
+				"sass",
+				"scss",
+				"less",
+				"svelte",
+				"astro",
+				"templ",
+			},
+		})
+
+		vim.lsp.config("lua_ls", {
+			settings = {
+				Lua = {
+					-- make the language server recognize "vim" global
+					diagnostics = {
+						globals = { "vim" },
+					},
+					completion = {
+						callSnippet = "Replace",
+					},
+				},
+			},
+		})
+
+		vim.lsp.config("intelephense", {
+			settings = {
+				intelephense = {
+					environment = {
+						includePaths = {
+							"/usr/share/php/stubs",
 						},
 					},
-					filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
-				})
-			end,
-			-- ["volar"] = function()
-			-- 	local mason_registry = require("mason-registry")
-			-- 	local vue_language_server_path = mason_registry.get_package("vue-language-server"):get_install_path()
-			-- 		.. "/node_modules/@vue/language-server"
-			--
-			-- 	lspconfig["volar"].setup({
-			-- 		capabilities = capabilities,
-			-- 		on_new_config = function(new_config, new_root_dir)
-			-- 			new_config.init_options.typescript.tsdk = utils.get_typescript_server_path(new_root_dir)
-			-- 		end,
-			-- 		-- init_options = {
-			-- 		-- 	vue = {
-			-- 		-- 		hybridMode = false,
-			-- 		-- 	},
-			-- 		-- },
-			-- 	})
-			-- end,
+				},
+			},
+			init_options = {
+				licenceKey = utils.load_env()["INTELEPHENSE_LICENSE_KEY"],
+			},
+			filetypes = {
+				"php",
+				"blade",
+				"php_only",
+			},
+		})
+
+		local mason_registry = require("mason-registry")
+		local mason_root = vim.env.MASON or vim.fn.stdpath("data") .. "/mason"
+		local vue_language_server_path = mason_root .. "/share/vue-language-server/node_modules/@vue/language-server"
+
+		vim.lsp.config("ts_ls", {
+			capabilities = capabilities,
+			init_options = {
+				plugins = {
+					{
+						name = "@vue/typescript-plugin",
+						location = vue_language_server_path,
+						languages = { "vue" },
+					},
+				},
+			},
+			filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
 		})
 	end,
 }
