@@ -167,7 +167,6 @@ return {
 			},
 		})
 
-		local mason_registry = require("mason-registry")
 		local mason_root = vim.env.MASON or vim.fn.stdpath("data") .. "/mason"
 		local vue_language_server_path = mason_root .. "/share/vue-language-server/node_modules/@vue/language-server"
 

@@ -8,6 +8,7 @@ opt.relativenumber = true
 opt.number = true
 
 opt.laststatus = 3
+opt.swapfile = false
 
 -- tabs & indentation
 opt.tabstop = 2
