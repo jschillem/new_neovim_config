@@ -6,7 +6,6 @@ return {
 		{ "antosha417/nvim-lsp-file-operations", config = true },
 	},
 	config = function()
-		local lspconfig = require("lspconfig")
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 		local utils = require("jschillem.utils")
 		local keymap = vim.keymap
@@ -79,23 +78,20 @@ return {
 			},
 		})
 
-		-- gleam
-		lspconfig["gleam"].setup({
-			capabilities = capabilities,
-		})
-
-		-- godot (gdscript)
-		lspconfig["gdscript"].setup({
-			capabilities = capabilities,
-		})
-
-		-- wgsl
-		lspconfig["wgsl_analyzer"].setup({
-			capabilities = capabilities,
-		})
-
 		vim.lsp.config("*", {
 			capabilities = capabilities,
+		})
+		vim.lsp.config("rust_analyzer", {
+			cmd = { "rust-analyzer" },
+			capabilities = capabilities,
+			settings = {
+				["rust-analyzer"] = {
+					checkOnSave = true,
+					check = {
+						command = "clippy",
+					},
+				},
+			},
 		})
 
 		vim.lsp.config("elixirls", {

@@ -18,7 +18,7 @@ return {
 	--- @type blink.cmp.Config
 	opts = {
 		enabled = function()
-			local disable_in = { "TelescopePrompt", "NvimTree", "lazy", "mason" }
+			local disable_in = { "DressingInput", "TelescopePrompt", "NvimTree", "lazy", "mason" }
 			for _, ft in ipairs(disable_in) do
 				if vim.bo.filetype == ft then
 					return false
