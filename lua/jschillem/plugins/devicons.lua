@@ -7,7 +7,7 @@ return {
 	},
 	event = "VeryLazy",
 	config = function()
-		local theme = require("onedark.palette").dark
+		local theme = require("tokyonight.colors.storm")
 
 		require("tiny-devicons-auto-colors").setup({
 			colors = theme,

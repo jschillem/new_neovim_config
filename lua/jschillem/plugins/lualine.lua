@@ -7,7 +7,7 @@ return {
 
 		lualine.setup({
 			options = {
-				theme = "onedark",
+				theme = "tokyonight",
 				color = {
 					gui = "bold",
 				},
