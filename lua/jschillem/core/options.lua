@@ -61,20 +61,7 @@ opt.clipboard:append("unnamedplus")
 opt.splitright = true
 opt.splitbelow = true
 
--- hide command line when not in command mode
-vim.o.cmdheight = 0
-vim.api.nvim_create_autocmd({ "CmdlineEnter" }, {
-	desc = "Show command line when in command mode",
-	callback = function()
-		vim.o.cmdheight = 1
-	end,
-})
-vim.api.nvim_create_autocmd({ "CmdlineLeave" }, {
-	desc = "Hide command line when not in command mode",
-	callback = function()
-		vim.o.cmdheight = 0
-	end,
-})
+vim.o.cmdheight = 1
 
 -- add not detected filetypes
 vim.filetype.add({
