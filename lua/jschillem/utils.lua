@@ -30,8 +30,8 @@ function M.get_typescript_server_path(root_dir)
 	local global_ts = "/home/jschillem/.nvm/versions/node/v20.15.1/lib/node_modules/typescript/lib"
 	local found_ts = ""
 	local function check_dir(path)
-		local ts_path = util.path.join(path, "node_modules", "typescript", "lib")
-		if util.path.exists(ts_path) then
+		local ts_path = table.concat({ path, "node_modules", "typescript", "lib" })
+		if vim.uv.fs_stat(ts_path) then
 			found_ts = ts_path
 			return true
 		end
@@ -41,6 +41,42 @@ function M.get_typescript_server_path(root_dir)
 	else
 		return global_ts
 	end
+end
+
+--- Function for finding the Godot project root directory.
+--- @return string?
+local function find_godot_project_root()
+	local cwd = vim.fn.getcwd()
+	local search_paths = { "", "/.." }
+
+	for _, relative_path in ipairs(search_paths) do
+		local proj_file = cwd .. relative_path .. "/project.godot"
+		if vim.uv.fs_stat(proj_file) then
+			return cwd .. relative_path
+		end
+	end
+
+	return nil
+end
+
+--- Function to check if server is already running.
+--- @return boolean
+local function is_server_running(project_path)
+	local server_pipe = project_path .. "/server.pipe"
+	return vim.uv.fs_stat(server_pipe) ~= nil
+end
+
+--- Function to start Godot server if needed.
+--- @return boolean
+function M.start_godot_server_if_needed()
+	local godot_project_path = find_godot_project_root()
+
+	if godot_project_path and not is_server_running(godot_project_path) then
+		vim.fn.serverstart(godot_project_path .. "/server.pipe")
+		return true
+	end
+
+	return false
 end
 
 return M

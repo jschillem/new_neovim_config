@@ -1,53 +1,98 @@
+local languages = {
+	"html",
+	"blade",
+	"css",
+	"php",
+	"php_only",
+	"bash",
+	"rust",
+	"python",
+	"c",
+	"cpp",
+}
+
 return {
 	"nvim-treesitter/nvim-treesitter",
-	lazy = false,
+	branch = "main",
 	build = ":TSUpdate",
 	dependencies = { "OXY2DEV/markview.nvim" },
 	config = function()
-		local treesitter = require("nvim-treesitter.configs")
+		require("nvim-treesitter").install(languages)
 
-		local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-		---@diagnostic disable-next-line: inject-field
-		parser_config.blade = {
-			install_info = {
-				url = "https://github.com/EmranMR/tree-sitter-blade",
-				files = { "src/parser.c" },
-				generate_requires_npm = true,
-				requires_generate_from_grammar = true,
-				branch = "main",
-			},
-			filetype = "blade",
-		}
+		vim.api.nvim_create_autocmd("FileType", {
+			group = vim.api.nvim_create_augroup("treesitter.setup", {}),
+			callback = function(args)
+				local buf = args.buf
+				local filetype = args.match
 
-		treesitter.setup({
-			ensure_installed = {
-				"html",
-				"blade",
-				"css",
-				"php",
-				"php_only",
-				"bash",
-				"rust",
-				"python",
-				"c",
-				"cpp",
-			},
-			auto_install = true,
-			highlight = {
-				enable = true,
-			},
-			indent = {
-				enable = true,
-			},
-			incremental_selection = {
-				enable = true,
-				keymaps = {
-					init_selection = "<M-Space>",
-					node_incremental = "<M-space>",
-					scope_incremental = false,
-					node_decremental = "<bs>",
-				},
-			},
+				local language = vim.treesitter.language.get_lang(filetype) or filetype
+				if not vim.treesitter.language.add(language) then
+					return
+				end
+
+				vim.wo.foldmethod = "expr"
+				vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+
+				vim.treesitter.start(buf, language)
+
+				vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+			end,
 		})
+
+		local selection_stack = {}
+
+		local function select_range(srow, scol, erow, ecol)
+			vim.fn.setpos("'<", { 0, srow + 1, scol + 1, 0 })
+			vim.fn.setpos("'>", { 0, erow + 1, ecol, 0 })
+			vim.cmd("normal! gv")
+		end
+
+		vim.keymap.set("n", "<M-Space>", function()
+			local node = vim.treesitter.get_node()
+			if not node then
+				return
+			end
+			selection_stack = { node }
+			local srow, scol, erow, ecol = node:range()
+			select_range(srow, scol, erow, ecol)
+		end, { desc = "TS init selection" })
+
+		vim.keymap.set("x", "<M-Space>", function()
+			local node = selection_stack[#selection_stack]
+			if not node then
+				node = vim.treesitter.get_node()
+				if not node then
+					return
+				end
+				selection_stack = { node }
+			end
+			local csrow, cscol, cerow, cecol = node:range()
+			local parent = node:parent()
+			while parent do
+				local psrow, pscol, perow, pecol = parent:range()
+				if psrow ~= csrow or pscol ~= cscol or perow ~= cerow or pecol ~= cecol then
+					break
+				end
+				parent = parent:parent()
+			end
+			if not parent then
+				select_range(csrow, cscol, cerow, cecol)
+				return
+			end
+			table.insert(selection_stack, parent)
+			local srow, scol, erow, ecol = parent:range()
+			select_range(srow, scol, erow, ecol)
+		end, { desc = "TS node incremental" })
+
+		vim.keymap.set("x", "<BS>", function()
+			if #selection_stack <= 1 then
+				return
+			end
+
+			table.remove(selection_stack)
+			local node = selection_stack[#selection_stack]
+			local srow, scol, erow, ecol = node:range()
+			select_range(srow, scol, erow, ecol)
+		end, { desc = "TS node decremental" })
 	end,
 }

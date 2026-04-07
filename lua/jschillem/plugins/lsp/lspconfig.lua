@@ -6,7 +6,6 @@ return {
 		{ "antosha417/nvim-lsp-file-operations", config = true },
 	},
 	config = function()
-		local blink = require("blink.cmp")
 		local utils = require("jschillem.utils")
 		local keymap = vim.keymap
 
@@ -57,7 +56,11 @@ return {
 				end, opts)
 
 				opts.desc = "Show documentation for item under cursor"
-				keymap.set("n", "K", vim.lsp.buf.hover, opts)
+				keymap.set("n", "K", function()
+					vim.lsp.buf.hover({
+						border = "single",
+					})
+				end, opts)
 
 				opts.desc = "Restart LSP"
 				keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts)
@@ -109,6 +112,22 @@ return {
 					end,
 				})
 			end,
+		})
+
+		vim.lsp.config("tailwindcss", {
+			filetypes = vim.list_extend(require("lspconfig.configs.tailwindcss").default_config.filetypes, { "rust" }),
+			settings = {
+				tailwindCSS = {
+					includeLanguages = {
+						rust = "html",
+					},
+					experimental = {
+						classRegex = {
+							{ "\\w+((?:\\.\\s*\\S+\\s*)*)", '\\."?([^."]+)"?' },
+						},
+					},
+				},
+			},
 		})
 
 		vim.lsp.config("emmet_language_server", {
@@ -165,7 +184,7 @@ return {
 		})
 
 		local mason_root = vim.env.MASON or vim.fn.stdpath("data") .. "/mason"
-		local vue_language_server_path = mason_root .. "/share/vue-language-server/node_modules/@vue/language-server"
+		local vue_language_server_path = mason_root .. "/packages/vue-language-server/node_modules/@vue/language-server"
 
 		vim.lsp.config("ts_ls", {
 			capabilities = capabilities,

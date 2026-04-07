@@ -40,7 +40,7 @@ return {
 		)
 		keymap.set(
 			"n",
-			"/",
+			"<leader>/",
 			"<cmd>Telescope current_buffer_fuzzy_find<cr>",
 			{ desc = "Fuzzy find words in current buffer" }
 		)
