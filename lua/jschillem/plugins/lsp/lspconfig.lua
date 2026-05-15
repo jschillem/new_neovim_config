@@ -63,7 +63,7 @@ return {
 				end, opts)
 
 				opts.desc = "Restart LSP"
-				keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts)
+				keymap.set("n", "<leader>rs", ":lsp restart<CR>", opts)
 			end,
 		})
 
@@ -90,6 +90,9 @@ return {
 			capabilities = capabilities,
 			settings = {
 				["rust-analyzer"] = {
+					cargo = {
+						allFeatures = true,
+					},
 					checkOnSave = true,
 					check = {
 						command = "clippy",
@@ -183,6 +186,10 @@ return {
 			},
 		})
 
+		vim.lsp.config("gdscript", {
+			capabilities = capabilities,
+		})
+
 		local mason_root = vim.env.MASON or vim.fn.stdpath("data") .. "/mason"
 		local vue_language_server_path = mason_root .. "/packages/vue-language-server/node_modules/@vue/language-server"
 
@@ -198,6 +205,14 @@ return {
 				},
 			},
 			filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+		})
+
+		vim.api.nvim_create_autocmd("FileType", {
+			pattern = "gdscript",
+			once = true,
+			callback = function()
+				vim.lsp.enable("gdscript")
+			end,
 		})
 	end,
 }

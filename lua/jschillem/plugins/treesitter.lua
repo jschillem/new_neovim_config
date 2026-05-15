@@ -1,14 +1,19 @@
 local languages = {
-	"html",
-	"blade",
-	"css",
-	"php",
-	"php_only",
 	"bash",
-	"rust",
-	"python",
+	"blade",
 	"c",
 	"cpp",
+	"css",
+	"gdscript",
+	"gdshader",
+	"html",
+	"lua",
+	"php",
+	"php_only",
+	"python",
+	"rust",
+	"toml",
+	"zsh",
 }
 
 return {

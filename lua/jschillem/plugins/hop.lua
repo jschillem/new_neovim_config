@@ -1,7 +1,6 @@
 return {
-	"hadronized/hop.nvim",
+	"smoka7/hop.nvim",
 	event = { "BufReadPre", "BufNewFile" },
-	branch = "v2",
 	config = function()
 		local hop = require("hop")
 		local directions = require("hop.hint")

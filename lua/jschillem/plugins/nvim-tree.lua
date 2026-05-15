@@ -48,7 +48,7 @@ return {
 				},
 			},
 			filters = {
-				custom = { ".DS_Store", "^.git$" },
+				custom = { ".DS_Store", "^.git$", "*.uid", "server.pipe" },
 				dotfiles = true,
 			},
 			git = {

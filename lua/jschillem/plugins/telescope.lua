@@ -12,6 +12,13 @@ return {
 
 		telescope.setup({
 			defaults = {
+				file_ignore_patterns = {
+					"%.uid$",
+					"%.import$",
+					"%.tmp$",
+					"server%.pipe",
+					"%.godot/",
+				},
 				path_display = { "smart" },
 				mappings = {
 					i = {
