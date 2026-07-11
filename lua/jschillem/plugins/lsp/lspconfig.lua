@@ -2,6 +2,7 @@ return {
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
+		{ "mrjones2014/codesettings.nvim", opts = {} },
 		"saghen/blink.cmp",
 		{ "antosha417/nvim-lsp-file-operations", config = true },
 	},
@@ -84,10 +85,16 @@ return {
 
 		vim.lsp.config("*", {
 			capabilities = capabilities,
+			before_init = function(_, config)
+				require("codesettings").with_local_settings(config.name, config)
+			end,
 		})
 		vim.lsp.config("rust_analyzer", {
 			cmd = { "rust-analyzer" },
 			capabilities = capabilities,
+			before_init = function(_, config)
+				require("codesettings").with_local_settings(config.name, config)
+			end,
 			settings = {
 				["rust-analyzer"] = {
 					cargo = {
@@ -189,6 +196,14 @@ return {
 		vim.lsp.config("gdscript", {
 			capabilities = capabilities,
 		})
+
+		vim.lsp.config("sourcekit", {
+			cmd = { "sourcekit-lsp" },
+			filetypes = { "swift", "c", "cpp", "objective-c", "objective-cpp" },
+			root_markers = { "Package.swift", "compile_commands.json", ".git" },
+		})
+
+		vim.lsp.enable("sourcekit")
 
 		local mason_root = vim.env.MASON or vim.fn.stdpath("data") .. "/mason"
 		local vue_language_server_path = mason_root .. "/packages/vue-language-server/node_modules/@vue/language-server"

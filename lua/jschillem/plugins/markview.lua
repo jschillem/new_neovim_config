@@ -10,7 +10,7 @@ return {
 
 		require("markview").setup({
 			preview = {
-				filetypes = { "markdown", "Avante" },
+				filetypes = { "markdown", "Avante", "codecompanion" },
 				icon_provider = "devicons",
 			},
 			markdown = {
