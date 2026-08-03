@@ -5,7 +5,7 @@ return {
 		"leoluz/nvim-dap-go",
 		"theHamsta/nvim-dap-virtual-text",
 		"nvim-neotest/nvim-nio",
-		{ "jay-babu/mason-nvim-dap.nvim" },
+		"jay-babu/mason-nvim-dap.nvim",
 	},
 	ft = { "go", "c", "cpp", "rust", "zig" },
 	config = function()

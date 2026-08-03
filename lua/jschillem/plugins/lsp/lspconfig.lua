@@ -97,6 +97,9 @@ return {
 			end,
 			settings = {
 				["rust-analyzer"] = {
+					files = {
+						excludeDirs = { "target", ".git" },
+					},
 					cargo = {
 						allFeatures = true,
 					},
@@ -199,7 +202,7 @@ return {
 
 		vim.lsp.config("sourcekit", {
 			cmd = { "sourcekit-lsp" },
-			filetypes = { "swift", "c", "cpp", "objective-c", "objective-cpp" },
+			filetypes = { "swift", "objective-c", "objective-cpp" },
 			root_markers = { "Package.swift", "compile_commands.json", ".git" },
 		})
 
