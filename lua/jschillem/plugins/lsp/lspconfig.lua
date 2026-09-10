@@ -127,6 +127,18 @@ return {
 			end,
 		})
 
+		vim.lsp.config("cssls", {
+			settings = {
+				css = {
+					validate = true,
+					lint = {
+						unknownAtRules = "ignore",
+						unknownProperties = "ignore",
+					},
+				},
+			},
+		})
+
 		vim.lsp.config("tailwindcss", {
 			filetypes = vim.list_extend(require("lspconfig.configs.tailwindcss").default_config.filetypes, { "rust" }),
 			settings = {

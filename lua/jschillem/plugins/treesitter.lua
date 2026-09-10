@@ -58,7 +58,7 @@ return {
 			vim.cmd("normal! gv")
 		end
 
-		vim.keymap.set("n", "<M-Space>", function()
+		vim.keymap.set("n", "<leader>v>", function()
 			local node = vim.treesitter.get_node()
 			if not node then
 				return
@@ -68,7 +68,7 @@ return {
 			select_range(srow, scol, erow, ecol)
 		end, { desc = "TS init selection" })
 
-		vim.keymap.set("x", "<M-Space>", function()
+		vim.keymap.set("x", "v", function()
 			local node = selection_stack[#selection_stack]
 			if not node then
 				node = vim.treesitter.get_node()
